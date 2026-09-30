@@ -1,6 +1,9 @@
+import { trackHeroScroll } from './hero-scroll.js';
+
 const stage = document.querySelector('.light-product-stage');
 if (stage) {
   const hero = stage.closest('.light-hero');
+  const heroProgress = trackHeroScroll(hero);
   if (!matchMedia('(max-width: 760px)').matches) {
     const dust = document.createElement('div');
     dust.className = 'crystal-dissolve-dust';
@@ -42,8 +45,8 @@ if (stage) {
   }
   function syncScrollObjects() {
     if (!hero) return;
-    targetScroll = Math.max(0, Math.min(1, -hero.getBoundingClientRect().top / Math.max(1, hero.offsetHeight * .85)));
-    if (!scrollFrame) scrollFrame = requestAnimationFrame(animateScrollObjects);
+    targetScroll = heroProgress();
+    if (!scrollFrame && currentScroll !== targetScroll) scrollFrame = requestAnimationFrame(animateScrollObjects);
   }
   function schedule() {
     clearTimeout(timer);

@@ -1,4 +1,6 @@
-// Real faceted geometry, three draw calls, no textures or rendering library.
+import { trackHeroScroll } from './hero-scroll.js';
+
+// Real faceted geometry, up to three draw calls, no textures or rendering library.
 // The renderer runs only during a short entrance/interaction and stays idle otherwise.
 const vertexSource = `
   attribute vec3 position;
@@ -240,25 +242,20 @@ export function mountCrystal(scene) {
     suppressClick = false;
   const tones = { emerald: [0.12, 0.48, 0.31], champagne: [0.91, 0.83, 0.67], clear: [0.83, 0.94, 0.91] };
   const scrollHero = showcase ? scene.closest('.light-hero') : null;
+  const heroProgress = scrollHero ? trackHeroScroll(scrollHero) : () => 0;
+  const stones = showcase
+    ? [[0, 0.08, .88, 0]]
+    : [[0, 0.08, .78, 0], [-1.04, -0.48, .27, 1], [0.97, 0.54, .19, 2]];
+  const secondaryTint = new Float32Array([0.22, 0.46, 0.33]);
+  let contextLost = false, lastTint = null, dragSensitivity = 0;
 
   function draw() {
-    if (disposed || gl.isContextLost()) return;
+    if (disposed || contextLost) return;
     // Scroll adds to the user's rotation without changing it. Going back up
     // restores the same view, and the canvas stays inside its existing layout.
-    const scroll = scrollHero && !reduced.matches
-      ? Math.max(0, Math.min(1, -scrollHero.getBoundingClientRect().top / Math.max(1, scrollHero.offsetHeight * .85)))
-      : 0;
-    gl.viewport(0, 0, canvas.width, canvas.height);
+    const scroll = !reduced.matches ? heroProgress() : 0;
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    gl.uniform1f(uniforms.aspect, canvas.width / canvas.height);
     const tint = tones[scene.dataset.crystal] || tones.champagne;
-    const stones = showcase
-      ? [[0, 0.08, .88, 0]]
-      : [
-          [0, 0.08, .78, 0],
-          [-1.04, -0.48, .27, 1],
-          [0.97, 0.54, .19, 2],
-        ];
     for (const [x, y, size, index] of stones) {
       gl.uniform3f(uniforms.placement, x + scroll * .09, y + scroll * .16, size);
       gl.uniform3f(
@@ -267,19 +264,24 @@ export function mountCrystal(scene) {
         yaw + index * 0.7 + scroll * 2.4,
         0.3 + index * 0.5 - scroll * .28,
       );
-      gl.uniform3fv(
-        uniforms.tint,
-        index === 1 && scene.dataset.crystal !== "emerald"
-          ? [0.22, 0.46, 0.33]
-          : tint,
-      );
+      const stoneTint = index === 1 && scene.dataset.crystal !== 'emerald' ? secondaryTint : tint;
+      if (lastTint !== stoneTint) {
+        gl.uniform3fv(uniforms.tint, stoneTint);
+        lastTint = stoneTint;
+      }
       gl.drawArrays(gl.TRIANGLES, 0, vertices.length / 6);
     }
   }
   function resize() {
     const dpr = Math.min(devicePixelRatio || 1, 1.5);
-    canvas.width = Math.max(1, Math.round(button.clientWidth * dpr));
-    canvas.height = Math.max(1, Math.round(button.clientHeight * dpr));
+    const width = button.clientWidth, height = button.clientHeight;
+    const pixelWidth = Math.max(1, Math.round(width * dpr));
+    const pixelHeight = Math.max(1, Math.round(height * dpr));
+    dragSensitivity = (Math.PI * 1.5) / Math.max(100, width);
+    if (canvas.width !== pixelWidth) canvas.width = pixelWidth;
+    if (canvas.height !== pixelHeight) canvas.height = pixelHeight;
+    gl.viewport(0, 0, pixelWidth, pixelHeight);
+    gl.uniform1f(uniforms.aspect, pixelWidth / pixelHeight);
     draw();
   }
   function tick(now) {
@@ -304,12 +306,18 @@ export function mountCrystal(scene) {
       requestDraw();
   }
   function requestDraw() {
-    if (!frame && visible && !document.hidden && !disposed && !gl.isContextLost())
+    if (!frame && visible && !document.hidden && !disposed && !contextLost)
       frame = requestAnimationFrame(tick);
   }
   if (scrollHero) {
+    let lastScroll = -1;
     window.addEventListener('scroll', () => {
-      if (!reduced.matches) requestDraw();
+      if (reduced.matches || !visible || document.hidden) return;
+      const scroll = heroProgress();
+      if (scroll !== lastScroll) {
+        lastScroll = scroll;
+        requestDraw();
+      }
     }, { passive: true, signal: events.signal });
   }
   function turn(toX = pitch, toY = yaw + 0.9, duration = 650) {
@@ -384,7 +392,7 @@ export function mountCrystal(scene) {
   listen(button, "pointermove", (event) => {
     if (!drag || event.pointerId !== drag.id) return;
     const now = performance.now();
-    const sensitivity = (Math.PI * 1.5) / Math.max(100, button.clientWidth);
+    const sensitivity = dragSensitivity;
     const dx = (event.clientX - drag.x) * sensitivity;
     const dy = (event.clientY - drag.y) * sensitivity;
     const dt = Math.max(8, now - drag.time) / 16.67;
@@ -434,6 +442,7 @@ export function mountCrystal(scene) {
   listen(scene, "crystal:tone", draw);
   listen(canvas, "webglcontextlost", (event) => {
     event.preventDefault();
+    contextLost = true;
     stop();
     scene.classList.remove("webgl-ready");
     button.disabled = true;

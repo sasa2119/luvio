@@ -17,6 +17,13 @@ menu.addEventListener("close", () => {
   toggle.setAttribute("aria-expanded", "false");
   toggle.setAttribute("aria-label", "Open navigation");
 });
+// This is a non-modal panel: let Tab leave naturally, then dismiss it.
+menu.addEventListener('focusout', () => {
+  requestAnimationFrame(() => {
+    if (menu.open && !menu.contains(document.activeElement) && document.activeElement !== toggle)
+      menu.close();
+  });
+});
 menu
   .querySelectorAll("a")
   .forEach((a) => a.addEventListener("click", () => menu.close()));
