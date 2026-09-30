@@ -248,12 +248,19 @@ export function mountCrystal(scene) {
     : [[0, 0.08, .78, 0], [-1.04, -0.48, .27, 1], [0.97, 0.54, .19, 2]];
   const secondaryTint = new Float32Array([0.22, 0.46, 0.33]);
   let contextLost = false, lastTint = null, dragSensitivity = 0;
+  let scrollTarget = 0, scrollCurrent = 0;
 
   function draw() {
     if (disposed || contextLost) return;
     // Scroll adds to the user's rotation without changing it. Going back up
     // restores the same view, and the canvas stays inside its existing layout.
-    const scroll = !reduced.matches ? heroProgress() : 0;
+    if (reduced.matches) {
+      scrollTarget = scrollCurrent = 0;
+    } else {
+      scrollCurrent += (scrollTarget - scrollCurrent) * .16;
+      if (Math.abs(scrollTarget - scrollCurrent) < .001) scrollCurrent = scrollTarget;
+    }
+    const scroll = scrollCurrent;
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     const tint = tones[scene.dataset.crystal] || tones.champagne;
     for (const [x, y, size, index] of stones) {
@@ -302,7 +309,7 @@ export function mountCrystal(scene) {
       velocityY *= Math.pow(0.88, dt);
     }
     draw();
-    if (tween || (!drag && Math.hypot(velocityX, velocityY) > 0.001))
+    if (tween || (!drag && Math.hypot(velocityX, velocityY) > 0.001) || Math.abs(scrollTarget - scrollCurrent) > .001)
       requestDraw();
   }
   function requestDraw() {
@@ -313,9 +320,10 @@ export function mountCrystal(scene) {
     let lastScroll = -1;
     window.addEventListener('scroll', () => {
       if (reduced.matches || !visible || document.hidden) return;
-      const scroll = heroProgress();
-      if (scroll !== lastScroll) {
-        lastScroll = scroll;
+      const nextScroll = heroProgress();
+      if (nextScroll !== lastScroll) {
+        lastScroll = nextScroll;
+        scrollTarget = nextScroll;
         requestDraw();
       }
     }, { passive: true, signal: events.signal });
@@ -357,6 +365,7 @@ export function mountCrystal(scene) {
   const observer = new IntersectionObserver(
     (entries) => {
       visible = entries[0].isIntersecting;
+      if (visible && !reduced.matches) scrollTarget = heroProgress();
       if (!visible) stop();
       else if (!started) {
         started = true;
