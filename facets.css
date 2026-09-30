@@ -1,0 +1,530 @@
+/* Carved serif forms, geometric supporting type, original LUVIO lettering. */
+:root {
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Jost", Arial, sans-serif;
+  --brand-serif: "Newsreader", Georgia, serif;
+}
+.wordmark,
+.arrival-wordmark,
+.crystal-wordmark text {
+  font-family: var(--brand-serif);
+}
+h1,
+h2,
+h3 {
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+em {
+  font-weight: 500;
+}
+.hero h1 {
+  font-weight: 500;
+  font-size: clamp(62px, 6.25vw, 100px);
+  line-height: 0.99;
+}
+.hero h1 em {
+  font-size: 0.87em;
+  letter-spacing: -0.045em;
+}
+.hero-note {
+  font-size: 16px;
+}
+.eyebrow {
+  letter-spacing: 0.17em;
+}
+.desktop-nav a {
+  font-size: 11px;
+  letter-spacing: 0.085em;
+}
+.button,
+.text-link {
+  font-size: 12px;
+  letter-spacing: 0.065em;
+}
+.product-info h2 {
+  font-weight: 600;
+}
+.hero-photo-link {
+  font-size: 34px;
+}
+
+/* Tiny inset stones and a faceted lower edge, with the plain menu control intact. */
+.header-crystals {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+.header-gem {
+  position: absolute;
+  top: 50%;
+  width: 58px;
+  height: 40px;
+  pointer-events: auto;
+  transform-origin: center;
+  object-fit: contain;
+  pointer-events: none;
+}
+.header-gem-left {
+  left: calc(50% - 126px);
+  transform: translateY(-50%) rotate(-28deg);
+}
+.header-gem-right {
+  right: calc(50% - 126px);
+  transform: translateY(-50%) rotate(28deg);
+}
+.header-gem.static-crystal .crystal-turn {
+  cursor: default;
+  pointer-events: none;
+}
+.header-gem.static-crystal .crystal-turn canvas {
+  display: none;
+}
+.header-gem.static-crystal .crystal-fallback {
+  visibility: visible;
+}
+.header-gem.static-crystal .crystal-caption {
+  display: none;
+}
+.header-gem .crystal-turn {
+  aspect-ratio: 1.45;
+  cursor: grab;
+}
+.header-gem .crystal-caption {
+  display: none;
+}
+.header-gem .crystal-turn::after {
+  display: none;
+}
+.header-gem .crystal-fallback {
+  opacity: 0.92;
+}
+.header-facet-line {
+  position: absolute;
+  left: var(--space);
+  right: var(--space);
+  bottom: 0;
+  height: 5px;
+  border-bottom: 1px solid #92764f60;
+  clip-path: polygon(
+    0 75%,
+    46% 75%,
+    49% 0,
+    51% 0,
+    54% 75%,
+    100% 75%,
+    100% 100%,
+    0 100%
+  );
+  background: #ac91605c;
+}
+.desktop-nav a[aria-current="page"]::after {
+  border-radius: 0;
+  clip-path: polygon(50% 0, 100% 40%, 75% 100%, 25% 100%, 0 40%);
+}
+.desktop-nav a[aria-current]::before,
+.category-nav a[aria-current]::before {
+  content: "";
+  position: absolute;
+  width: 38px;
+  height: 24px;
+  background: url("/images/gem-garland.svg") center / contain no-repeat;
+  border-radius: 0;
+  box-shadow: none;
+  clip-path: none;
+  pointer-events: none;
+}
+.desktop-nav a[aria-current]::before {
+  left: calc(50% - 19px);
+  bottom: -12px;
+}
+.category-nav a[aria-current]::before {
+  left: calc(50% - 19px);
+  bottom: -12px;
+}
+/* One sculpted five-stone centerpiece replaces rows of flat dot icons. */
+.tiny-crystal,
+.crystal-rule i,
+.crystal-field i,
+.brand-ribbon i,
+.brand-ribbon > svg {
+  border-radius: 0 !important;
+  clip-path: none;
+  background: url("/images/gem-garland.svg") center / contain no-repeat;
+  border: 0 !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 1px 1px #45382740);
+}
+.desktop-nav a[aria-current]::after {
+  border-radius: 0;
+  clip-path: polygon(50% 0, 100% 40%, 75% 100%, 25% 100%, 0 40%);
+}
+.category-nav a[aria-current]::after {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: 1px;
+  background: var(--gold);
+  clip-path: none;
+}
+.brand-ribbon > svg {
+  width: 48px;
+  height: 24px;
+  rotate: 0deg;
+}
+.brand-ribbon > svg use {
+  visibility: hidden;
+}
+.crystal-rule {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 84px;
+  background: url("/images/gem-garland.svg") center / min(280px, 72vw) auto
+    no-repeat;
+}
+.crystal-rule i {
+  display: none;
+}
+.crystal-rule::before,
+.crystal-rule::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: max(0px, calc(50% - 140px));
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #9d8560 16%, #9d8560);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.crystal-rule::before {
+  left: 0;
+}
+.crystal-rule::after {
+  right: 0;
+  transform: translateY(-50%) scaleX(-1);
+}
+.crystal-field {
+  background: url("/images/gem-garland.svg") center / min(180px, 75%) auto
+    no-repeat;
+}
+.crystal-field i {
+  display: none;
+}
+.hero .crystal-field i:nth-child(3n) {
+  display: none;
+}
+.tiny-crystal {
+  width: 36px !important;
+  height: 24px !important;
+  vertical-align: middle;
+}
+.brand-ribbon i {
+  width: 36px !important;
+  height: 23px !important;
+}
+.crystal-rule i:nth-child(2n) {
+  background-image: url("/images/gem-garland.svg");
+}
+.crystal-field i:nth-child(2n) {
+  background-image: url("/images/gem-garland.svg");
+}
+.desktop-nav a[aria-current]::before {
+  border-radius: 0;
+  clip-path: none;
+}
+.header .logo-slot {
+  overflow: visible;
+}
+
+/* Jewelry-like clusters sit in the open margins, never on the portraits. */
+.hero-copy::before {
+  width: 45px;
+}
+.hero-foot {
+  max-width: calc(100% - 130px);
+}
+.hero-foot > span {
+  white-space: nowrap;
+}
+.brand-ribbon > svg {
+  width: 46px;
+  height: 22px;
+  rotate: 0deg;
+}
+.tiny-crystal,
+.crystal-rule i,
+.crystal-field i,
+.brand-ribbon i {
+  border-radius: 0 !important;
+  clip-path: none;
+  background: url("/images/facet-emerald.png") center / contain no-repeat;
+  border: 0 !important;
+  box-shadow: none !important;
+  transform: rotate(8deg);
+  filter: brightness(1.22) contrast(1.3) saturate(1.18)
+    drop-shadow(1px 2px 2px #27463655);
+}
+.crystal-rule i:nth-child(2n) {
+  transform: rotate(-18deg) scale(0.82);
+  background-image: url("/images/facet-emerald.png");
+}
+.crystal-rule i:nth-child(3n) {
+  transform: rotate(8deg) scale(1.14);
+}
+.brand-ribbon i {
+  width: 8px;
+  height: 11px;
+}
+.brand-ribbon i:nth-of-type(2) {
+  background-image: url("/images/facet-emerald.png");
+}
+.crystal-field i {
+  width: 10px;
+  height: 13px;
+}
+.tiny-crystal {
+  width: 10px;
+  height: 14px;
+}
+.collection-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 22px;
+  margin: -12px 0 28px;
+  border-bottom: 1px solid var(--line);
+}
+.collection-note > span {
+  font: italic 500 25px/1.15 var(--serif);
+  color: #705739;
+}
+.collection-sprig {
+  width: 125px;
+  margin: -12px 0;
+}
+.custom-cut-right {
+  bottom: 110px;
+  right: 15%;
+}
+.custom-cut-left {
+  width: 145px;
+  top: 220px;
+  left: 7%;
+}
+.emerald-ornament {
+  width: 230px;
+  color: #bfa87d;
+  margin: -10px 0 26px;
+}
+
+/* Angular word reveals: no blur, letter scrambling, or perpetual animation. */
+.hero h1 > span,
+.hero h1 > em,
+.motion-ready [data-reveal].visible h2.text-faceted,
+.motion-ready h2.text-faceted[data-reveal].visible {
+  animation: none;
+}
+.text-faceted .facet-word,
+.hero h1 .facet-word {
+  display: inline-block;
+  padding: 0.07em 0.08em 0.18em;
+  margin: -0.07em -0.08em -0.18em;
+  animation: none;
+  transform-origin: 50% 60%;
+}
+.motion-ready .text-faceted:not(.facet-play) .facet-word {
+  opacity: 0;
+}
+.text-faceted.facet-play .facet-word {
+  animation: facet-letter-set 850ms cubic-bezier(0.16, 0.8, 0.23, 1) both;
+  animation-delay: calc(var(--facet-order) * 65ms);
+}
+@keyframes facet-letter-set {
+  0% {
+    opacity: 0.12;
+    clip-path: polygon(0 48%, 45% 48%, 55% 52%, 0 52%);
+    transform: perspective(550px) rotateY(-28deg) rotateZ(-2deg);
+  }
+  48% {
+    opacity: 1;
+    clip-path: polygon(0 0, 92% 0, 100% 100%, 0 100%);
+  }
+  100% {
+    opacity: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: perspective(550px) rotateY(0) rotateZ(0);
+  }
+}
+@media (min-width: 801px) and (max-width: 1199px) {
+  .header-gem {
+    display: none;
+  }
+  .hero h1 {
+    font-size: clamp(54px, 6.3vw, 72px);
+  }
+  .hero-foot {
+    max-width: calc(100% - 95px);
+    gap: 8px;
+  }
+  .hero-foot > span {
+    white-space: normal;
+  }
+}
+@media (max-width: 800px) {
+  .header-gem {
+    width: 52px;
+    height: 36px;
+  }
+  .hero h1 {
+    font-size: clamp(53px, 8vw, 68px);
+  }
+  .hero-foot {
+    max-width: none;
+  }
+  .custom-cut-left {
+    width: 85px;
+    left: 4%;
+    top: 160px;
+  }
+}
+@media (max-width: 550px) {
+  .hero h1 {
+    font-size: clamp(47px, 14.4vw, 64px);
+    line-height: 0.98;
+  }
+  .hero h1 em {
+    font-size: 0.86em;
+    white-space: nowrap;
+  }
+  .hero-note {
+    font-size: 14px;
+  }
+  .hero-copy {
+    padding-bottom: 32px;
+  }
+  .hero-foot {
+    gap: 12px;
+    max-width: calc(100% - 70px);
+  }
+  .hero-foot > span {
+    white-space: normal;
+    font-size: 9px;
+  }
+  .hero-jewel {
+    width: 78px;
+  }
+  .hero .button {
+    font-size: 10px;
+  }
+  .hero .text-link {
+    font-size: 9px;
+  }
+  .brand-ribbon {
+    gap: 9px;
+    letter-spacing: 0.035em;
+  }
+  .brand-ribbon > svg {
+    width: 32px;
+    height: 18px;
+  }
+  .collection-note {
+    margin: -8px 0 25px;
+    padding-bottom: 16px;
+    gap: 12px;
+  }
+  .collection-note > span {
+    font-size: 21px;
+    max-width: 180px;
+  }
+  .collection-sprig {
+    width: 93px;
+  }
+  .custom-cut-left {
+    width: 46px;
+    top: 100px;
+    left: 14px;
+  }
+  .custom-cut-right {
+    width: 36px;
+    right: 13px;
+    bottom: 68px;
+  }
+  .emerald-ornament {
+    width: 190px;
+  }
+}
+@media (max-width: 360px) {
+  .hero-actions {
+    gap: 12px;
+  }
+  .hero-actions .button {
+    padding-inline: 10px;
+    gap: 10px;
+  }
+  .hero-actions svg {
+    width: 17px;
+    height: 17px;
+  }
+  .hero-actions .text-link {
+    font-size: 8.5px;
+    gap: 8px;
+  }
+  .hero-foot {
+    max-width: calc(100% - 52px);
+    gap: 10px;
+  }
+  .hero-jewel {
+    width: 68px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-ready .text-faceted .facet-word {
+    opacity: 1;
+  }
+  .text-faceted.facet-play .facet-word {
+    animation: none;
+  }
+}
+
+/* Homepage objects share one entrance timeline after the intro closes. */
+.home-entrance .hero-photo,
+.home-entrance .hero h1 > span,
+.home-entrance .hero h1 > em {
+  animation: none;
+}
+.hero-copy::before {
+  content: none !important;
+  display: none !important;
+}
+.home-entrance .home-enter-pending {
+  opacity: 0;
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-entrance .home-enter-pending {
+    opacity: var(--home-final-opacity, 1);
+  }
+}
+
+/* Keep crystal markers off navigation; show the active page with a fine underline. */
+.crystal-rule,
+.desktop-nav a[aria-current]::before,
+.category-nav a[aria-current]::before {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+}
+.desktop-nav a[aria-current]::after {
+  display: block !important;
+  content: "" !important;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 1px;
+  background: var(--gold) !important;
+  clip-path: none !important;
+  transform: scaleX(1) !important;
+}

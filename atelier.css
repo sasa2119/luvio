@@ -1,0 +1,1081 @@
+/* Atelier refinement. Components share spacing, type, and crystal geometry. */
+:root {
+  --serif: "Newsreader", Georgia, serif;
+  --sans: "DM Sans", Arial, sans-serif;
+  --ivory: #d6c5ae;
+  --paper: #e3d5c1;
+  --sand: #c5af93;
+  --caramel: #a7805d;
+  --ink: #30271f;
+  --muted: #635342;
+  --gold: #785d36;
+  --space: clamp(24px, 5.5vw, 106px);
+  --section-space: clamp(64px, 7vw, 112px);
+  --line: #68503940;
+}
+html {
+  scrollbar-gutter: stable;
+}
+body {
+  font-family: var(--sans);
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+h1,
+h2,
+h3 {
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+h2 {
+  font-size: clamp(38px, 4.5vw, 70px);
+}
+p {
+  line-height: 1.75;
+}
+em {
+  color: #705739;
+}
+.section-pad {
+  padding-block: var(--section-space);
+}
+.eyebrow {
+  font-size: 10px;
+  line-height: 1.65;
+  letter-spacing: 0.18em;
+}
+.button,
+.text-link {
+  font-size: 11px;
+  letter-spacing: 0.09em;
+}
+.button {
+  min-height: 52px;
+  padding: 16px 21px;
+  gap: 22px;
+}
+.button::before {
+  width: 5px;
+  height: 5px;
+  top: 5px;
+  right: 5px;
+}
+.text-link {
+  line-height: 1.6;
+}
+.wordmark {
+  font: 500 29px var(--serif);
+  letter-spacing: 0.21em;
+}
+.header {
+  height: 90px;
+}
+.header.scrolled {
+  height: 76px;
+}
+.desktop-nav a {
+  font-size: 11px;
+  letter-spacing: 0.055em;
+}
+
+/* Portraits always retain the top of the frame. No pointer light or parallax. */
+.hero {
+  min-height: 710px;
+}
+.hero-copy {
+  padding-top: 65px;
+  padding-bottom: 55px;
+}
+.hero h1 {
+  font-size: clamp(55px, 5.6vw, 94px);
+  line-height: 1.06;
+  letter-spacing: -0.055em;
+}
+.hero h1 em {
+  font-size: 0.83em;
+  margin-top: 0.1em;
+}
+.hero-intro {
+  margin-bottom: 28px;
+}
+.hero-note {
+  margin: 25px 0;
+  font-size: 14px;
+}
+.hero-actions {
+  gap: 22px;
+}
+.hero-photo {
+  min-height: 710px;
+}
+.hero-photo > img,
+.signature-photo > img,
+.product-alternate {
+  object-position: center top;
+}
+.hero-photo > img {
+  transform: none;
+  translate: none;
+}
+.hero-foot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+  max-width: none;
+  font-size: 10px;
+  line-height: 1.75;
+  letter-spacing: 0.035em;
+}
+.hero-photo-link {
+  font-size: 28px;
+  line-height: 1.2;
+  padding-top: 18px;
+}
+.hero-photo-link small {
+  font: 9px var(--sans);
+  margin-top: 8px;
+}
+.photo-index {
+  font-size: 9px;
+}
+.scroll-note {
+  right: calc(52% + 28px);
+  bottom: 14px;
+  font-size: 8px;
+}
+.brand-ribbon {
+  padding-block: 23px;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  gap: 42px;
+}
+.brand-ribbon i {
+  transform: rotate(35deg);
+  border-radius: 35%;
+}
+
+/* The small sculptural elements have generous hit areas, but no button chrome. */
+.crystal-scene {
+  position: relative;
+  width: 164px;
+  isolation: isolate;
+}
+.crystal-turn {
+  display: block;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.45;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: grab;
+  border-radius: 40%;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.crystal-turn:active,
+.crystal-turn.dragging {
+  cursor: grabbing;
+}
+.crystal-turn:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.crystal-turn::after {
+  content: "";
+  position: absolute;
+  left: 35%;
+  right: 25%;
+  bottom: 7%;
+  height: 7%;
+  border-radius: 50%;
+  background: #52412a10;
+  filter: blur(3px);
+  z-index: -1;
+}
+.crystal-turn canvas,
+.crystal-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.crystal-turn canvas {
+  opacity: 0;
+  pointer-events: none;
+}
+.webgl-ready canvas {
+  opacity: 1;
+}
+.webgl-ready .crystal-fallback {
+  visibility: hidden;
+}
+.crystal-caption {
+  display: block;
+  margin-top: 4px;
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  text-align: center;
+  color: var(--muted);
+}
+.hero-jewel {
+  width: 94px;
+  flex-shrink: 0;
+}
+.atelier-jewel {
+  margin: 0 auto 30px;
+  width: 190px;
+}
+.catalog-jewel {
+  position: absolute;
+  right: 0;
+  top: 5px;
+  width: 180px;
+}
+
+/* Collection: consistent image edges and readable captions. */
+.section-heading {
+  margin-bottom: 48px;
+}
+.section-heading .eyebrow {
+  margin-bottom: 20px;
+}
+.category-grid {
+  gap: 48px 6%;
+}
+.category-hoodies {
+  margin-top: 80px;
+}
+.category-tile img {
+  object-position: center;
+}
+.tile-caption {
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+}
+.tile-caption h3 {
+  font-size: clamp(28px, 2.5vw, 40px);
+  letter-spacing: -0.025em;
+}
+.category-tables {
+  padding: 30px 0;
+  margin-top: 16px;
+}
+.category-tables h3 {
+  font-size: 48px;
+}
+.signature-photo {
+  aspect-ratio: 3/4;
+  max-height: none;
+}
+.signature-copy h2 {
+  font-size: clamp(38px, 4.2vw, 68px);
+}
+.signature-copy .eyebrow {
+  margin-bottom: 28px;
+}
+.signature-copy {
+  padding-inline: clamp(28px, 5vw, 90px);
+}
+.signature-inset {
+  z-index: 2;
+}
+.signature-inset span {
+  font-size: 9px;
+}
+.custom-teaser {
+  padding-block: var(--section-space);
+}
+.custom-teaser h2 {
+  font-size: clamp(42px, 6vw, 94px);
+  line-height: 1.09;
+  margin: 26px 0;
+}
+.custom-teaser p {
+  font-size: 14px;
+}
+.crystal-wordmark {
+  width: min(440px, 85%);
+  margin-bottom: 35px;
+}
+.crystal-wordmark text {
+  font-family: var(--serif);
+}
+.emerald-feature h2 {
+  font-size: clamp(38px, 4vw, 66px);
+  line-height: 1.12;
+}
+.emerald-feature em,
+.artwork-feature em,
+.footer em {
+  color: #d6b993;
+}
+.emerald-feature .atelier-teaser-photo {
+  min-height: 0;
+  aspect-ratio: 3/2;
+  align-self: center;
+}
+.emerald-feature .atelier-teaser-photo img {
+  object-position: center;
+}
+.emerald-feature .atelier-teaser-copy {
+  min-width: 0;
+}
+.artwork-copy h2 {
+  font-size: clamp(38px, 4.6vw, 72px);
+  line-height: 1.14;
+}
+.story-teaser h2 {
+  font-size: clamp(38px, 4.5vw, 72px);
+  line-height: 1.16;
+}
+.newsletter h2 {
+  font-size: clamp(32px, 3.4vw, 48px);
+}
+.newsletter {
+  padding-block: 65px;
+}
+.footer {
+  padding-block: 55px 24px;
+}
+.footer-intro p {
+  font-size: 27px;
+  line-height: 1.3;
+}
+.footer-logo-slot {
+  display: none;
+}
+
+/* Shop and supporting pages share the same type scale. */
+.catalog-heading h1 {
+  font-size: clamp(76px, 10vw, 150px);
+  margin: 14px 0;
+}
+.catalog-heading p {
+  bottom: 56px;
+}
+.category-nav {
+  gap: 14px 32px;
+}
+.category-nav a {
+  font-size: 10px;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+}
+.product-info {
+  align-items: flex-start;
+  min-height: 66px;
+}
+.product-info h2 {
+  font-size: clamp(25px, 2.2vw, 34px);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+.product-info p {
+  font-size: 11px;
+  margin-top: 8px;
+}
+.inquiry-link {
+  min-height: 36px;
+}
+.gallery-main img {
+  object-position: center top;
+}
+.product-detail-copy h1 {
+  font-size: clamp(46px, 5.5vw, 82px);
+}
+.split-copy h1,
+.contact-intro h1 {
+  font-size: clamp(46px, 5.2vw, 80px);
+  line-height: 1.12;
+}
+.editorial-heading h1,
+.story-heading h1 {
+  font-size: clamp(44px, 6vw, 92px);
+}
+.chapter-copy h2 {
+  font-size: clamp(34px, 3.6vw, 56px);
+}
+.support-page h1,
+.faq-page h1 {
+  font-size: clamp(44px, 5vw, 76px);
+}
+.form-intro h2 {
+  font-size: clamp(40px, 4.7vw, 68px);
+}
+.exclusivity h2,
+.atelier-ending h2,
+.thank-you h1 {
+  font-size: clamp(44px, 6vw, 88px);
+}
+.values h2,
+.story-ending h2 {
+  font-size: clamp(34px, 4.5vw, 64px);
+}
+
+/* Motion references setting a stone and opening a facet. No clipped headings. */
+.motion-ready [data-reveal="image"] {
+  position: relative;
+  overflow: hidden;
+}
+.motion-ready [data-reveal="image"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: var(--ivory);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 35% 100%);
+  pointer-events: none;
+  transform: translateX(0);
+  transition: transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.motion-ready [data-reveal="image"].visible::before {
+  transform: translateX(105%);
+}
+[data-reveal],
+[data-reveal] > h2,
+[data-reveal] > div {
+  clip-path: none !important;
+}
+.motion-ready [data-reveal]:not(.visible) {
+  opacity: 1 !important;
+  transform: none !important;
+}
+.motion-ready [data-reveal="image"] > img {
+  transition:
+    opacity 0.85s var(--ease),
+    scale 1.2s var(--ease);
+  transform-origin: 50% 0%;
+}
+.motion-ready [data-reveal="image"]:not(.visible) > img {
+  opacity: 0.05;
+  scale: 1.025;
+}
+.motion-ready [data-reveal="image"].visible > img {
+  opacity: 1;
+  scale: 1;
+}
+.motion-ready [data-reveal="text"].visible h2,
+.motion-ready h2[data-reveal].visible {
+  animation: type-focus 0.9s var(--ease) both;
+}
+@keyframes type-focus {
+  from {
+    opacity: 0.25;
+    letter-spacing: -0.065em;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.motion-ready [data-reveal].visible .crystal-rule i {
+  animation: stone-set 0.65s var(--ease) both;
+}
+.crystal-rule i:nth-child(2) {
+  animation-delay: 0.1s !important;
+}
+.crystal-rule i:nth-child(3) {
+  animation-delay: 0.2s !important;
+}
+.crystal-rule i:nth-child(4) {
+  animation-delay: 0.3s !important;
+}
+.crystal-rule i:nth-child(5) {
+  animation-delay: 0.4s !important;
+}
+@keyframes stone-set {
+  from {
+    opacity: 0;
+    transform: rotate(100deg) scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+.motion-ready .crystal-wordmark:not(.visible) text {
+  opacity: 0.08;
+  transform: none;
+}
+.motion-ready .crystal-wordmark.visible text {
+  animation: word-stone-set 1.3s var(--ease) both;
+  animation-delay: calc(var(--order) * 0.12s);
+  transform-origin: center;
+}
+@keyframes word-stone-set {
+  from {
+    opacity: 0.08;
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.hero h1 span,
+.hero h1 em {
+  animation: type-focus 1s var(--ease) both;
+}
+.hero-photo {
+  animation: portrait-develop 1.2s var(--ease) both;
+}
+@keyframes portrait-develop {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.mobile-menu nav a {
+  animation: none;
+}
+body:has(.image-dialog[open]) {
+  overflow: hidden;
+}
+body:has(#mobile-menu[open]):not(:has(.image-dialog[open])) {
+  overflow: visible;
+}
+.mobile-menu .menu-top {
+  display: none;
+}
+.mobile-menu nav {
+  margin-top: 0;
+}
+.mobile-menu nav a[aria-current] {
+  color: #8b663d;
+}
+.menu-toggle {
+  position: relative;
+}
+.menu-toggle span {
+  position: absolute;
+  left: 12px;
+  top: 24px;
+  transform: translateY(-4px);
+}
+.menu-toggle span:last-child {
+  transform: translateY(4px);
+}
+.menu-toggle[aria-expanded="true"] span:first-child {
+  transform: rotate(45deg);
+}
+.menu-toggle[aria-expanded="true"] span:last-child {
+  transform: rotate(-45deg);
+}
+
+@media (min-width: 1700px) {
+  .hero,
+  .hero-photo {
+    min-height: 860px;
+  }
+  .hero-copy {
+    padding-top: 100px;
+  }
+  .hero h1 {
+    font-size: 104px;
+  }
+}
+@media (max-width: 1100px) {
+  .hero,
+  .hero-photo {
+    min-height: 650px;
+  }
+  .hero h1 {
+    font-size: clamp(50px, 6vw, 63px);
+  }
+  .hero h1 em {
+    font-size: 0.88em;
+    white-space: normal;
+  }
+  .hero-copy {
+    padding-top: 50px;
+  }
+  .hero-actions {
+    gap: 16px;
+  }
+  .hero-actions .button {
+    font-size: 10px;
+  }
+  .hero-foot {
+    margin-top: 20px;
+  }
+  .emerald-feature {
+    grid-template-columns: 1fr 1.2fr;
+  }
+}
+@media (max-width: 800px) {
+  .header,
+  .header.scrolled {
+    height: 76px;
+  }
+  .menu-toggle {
+    position: absolute;
+  }
+  .hero,
+  .hero-photo {
+    min-height: 600px;
+  }
+  .hero h1 {
+    font-size: 49px;
+  }
+  .hero-copy {
+    padding-top: 40px;
+  }
+  .hero-intro {
+    font-size: 9px;
+  }
+  .hero-note {
+    font-size: 13px;
+  }
+  .hero-jewel {
+    width: 70px;
+  }
+  .hero-foot {
+    font-size: 9px;
+    gap: 5px;
+  }
+  .section-heading h2 {
+    font-size: 41px;
+  }
+  .signature-copy h2 {
+    font-size: 36px;
+  }
+  .signature-copy {
+    padding: 40px 28px;
+  }
+  .signature-copy .button {
+    padding: 14px;
+    font-size: 9px;
+    gap: 14px;
+  }
+  .emerald-feature .atelier-teaser-copy {
+    align-self: stretch;
+    padding: 55px var(--space);
+  }
+  .emerald-feature h2 {
+    font-size: 46px;
+    max-width: 620px;
+  }
+  .emerald-feature .atelier-teaser-photo {
+    aspect-ratio: 3/2;
+    width: 100%;
+  }
+  .product-detail-copy h1 {
+    font-size: 48px;
+  }
+  .product-detail-grid {
+    gap: 5%;
+  }
+  .product-grid {
+    gap: 38px 22px;
+  }
+  .catalog-jewel {
+    width: 140px;
+  }
+  .mobile-menu nav a {
+    min-height: 54px;
+    font-size: 26px;
+  }
+  .mobile-menu {
+    padding: 12px 20px 20px;
+  }
+  .newsletter {
+    padding-block: 56px;
+  }
+}
+@media (max-width: 550px) {
+  :root {
+    --space: 22px;
+    --section-space: 62px;
+  }
+  .hero {
+    min-height: 0;
+  }
+  .hero-copy {
+    padding: 32px 22px 22px;
+  }
+  .hero-intro {
+    font-size: 8px;
+    margin-bottom: 22px;
+    letter-spacing: 0.16em;
+  }
+  .hero h1 {
+    font-size: clamp(43px, 12.5vw, 55px);
+    line-height: 1.07;
+    margin-bottom: 18px;
+  }
+  .hero h1 em {
+    font-size: 0.88em;
+    white-space: nowrap;
+    letter-spacing: -0.065em;
+    margin-top: 4px;
+  }
+  .hero-note {
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 18px 0 22px;
+  }
+  .hero-note br {
+    display: initial;
+  }
+  .hero-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 17px;
+  }
+  .hero-actions .button {
+    font-size: 10px;
+    padding: 14px 16px;
+    min-height: 48px;
+    gap: 14px;
+  }
+  .hero-actions .text-link {
+    font-size: 9px;
+    letter-spacing: 0.04em;
+    gap: 9px;
+  }
+  .hero-foot {
+    display: flex;
+    margin: 18px 0 0;
+    font-size: 9px;
+    gap: 12px;
+  }
+  .hero-jewel {
+    width: 78px;
+  }
+  .hero-photo {
+    min-height: 0;
+    margin: 0 14px;
+    aspect-ratio: 3/4;
+  }
+  .hero-photo-link {
+    font-size: 27px;
+  }
+  .hero-photo-link small {
+    font-size: 8px;
+    letter-spacing: 0.11em;
+  }
+  .photo-index {
+    font-size: 7px;
+    right: 14px;
+    top: 13px;
+    letter-spacing: 0.11em;
+  }
+  .brand-ribbon {
+    gap: 10px;
+    padding: 21px 14px;
+    font-size: 7px;
+    letter-spacing: 0.055em;
+  }
+  .brand-ribbon i {
+    width: 4px;
+    height: 4px;
+  }
+  .section-heading h2 {
+    font-size: clamp(35px, 9.8vw, 43px);
+  }
+  .section-heading .eyebrow {
+    font-size: 9px;
+    margin-bottom: 18px;
+  }
+  .section-heading > div:last-child {
+    margin-top: 25px;
+    gap: 10px;
+  }
+  .section-heading p {
+    font-size: 11px;
+  }
+  .section-heading .text-link {
+    font-size: 9px;
+    letter-spacing: 0.04em;
+    gap: 8px;
+  }
+  .category-grid {
+    gap: 22px 14px;
+  }
+  .category-shirts,
+  .category-hoodies {
+    grid-column: auto;
+    aspect-ratio: 3/4;
+    margin: 0;
+  }
+  .category-art {
+    aspect-ratio: 1.12;
+  }
+  .category-bracelets {
+    grid-column: 1/-1;
+    aspect-ratio: 3/2;
+  }
+  .category-tables {
+    grid-column: 1/-1;
+    padding: 20px 0 0;
+    margin: 0;
+  }
+  .category-tables h3 {
+    font-size: 36px;
+  }
+  .tile-caption {
+    left: 12px;
+    right: 12px;
+    bottom: 16px;
+  }
+  .tile-caption h3 {
+    font-size: 23px;
+    line-height: 1.1;
+  }
+  .tile-caption svg {
+    width: 14px;
+    height: 14px;
+  }
+  .category-art .tile-caption h3,
+  .category-bracelets .tile-caption h3 {
+    font-size: 30px;
+  }
+  .signature-copy {
+    padding: 44px 22px 50px;
+  }
+  .signature-copy .eyebrow {
+    font-size: 9px;
+    margin-bottom: 24px;
+  }
+  .signature-copy h2 {
+    font-size: clamp(36px, 10.3vw, 44px);
+    line-height: 1.13;
+  }
+  .signature-copy p {
+    font-size: 13px;
+  }
+  .signature-copy .button {
+    font-size: 10px;
+    padding: 16px 19px;
+  }
+  .signature-inset {
+    width: 28%;
+    right: 16px;
+    bottom: 18px;
+  }
+  .signature-inset span {
+    font-size: 7px;
+  }
+  .custom-teaser {
+    padding: 42px 22px 58px;
+  }
+  .atelier-jewel {
+    width: 158px;
+    margin-bottom: 28px;
+  }
+  .crystal-wordmark {
+    width: 83%;
+    margin-bottom: 28px;
+  }
+  .custom-teaser h2 {
+    font-size: clamp(39px, 11vw, 49px);
+    margin: 22px 0;
+  }
+  .custom-teaser .eyebrow {
+    font-size: 9px;
+  }
+  .custom-teaser p {
+    font-size: 13px;
+  }
+  .emerald-feature .atelier-teaser-copy {
+    padding: 48px 22px;
+  }
+  .emerald-feature h2 {
+    font-size: clamp(36px, 10vw, 43px);
+    margin-bottom: 32px;
+  }
+  .emerald-feature .eyebrow {
+    font-size: 9px;
+    margin-bottom: 25px;
+  }
+  .emerald-caption {
+    font-size: 12px;
+    margin-bottom: 28px;
+  }
+  .emerald-feature .atelier-teaser-photo {
+    aspect-ratio: 3/2;
+  }
+  .artwork-image {
+    height: 600px;
+  }
+  .artwork-image > img {
+    object-position: 60% center;
+  }
+  .artwork-copy {
+    left: 22px;
+    right: 22px;
+    bottom: 40px;
+  }
+  .artwork-copy h2 {
+    font-size: clamp(32px, 9vw, 39px);
+    margin: 20px 0 26px;
+    text-wrap: initial;
+  }
+  .story-teaser h2 {
+    font-size: clamp(32px, 8.8vw, 40px);
+  }
+  .newsletter h2 {
+    font-size: 33px;
+  }
+  .newsletter p {
+    font-size: 13px;
+  }
+  .newsletter-form button {
+    font-size: 10px;
+    gap: 10px;
+  }
+  .footer-main {
+    gap: 30px 20px;
+  }
+  .footer-intro p {
+    font-size: 28px;
+  }
+  .footer-bottom {
+    font-size: 10px;
+  }
+  .catalog {
+    padding-top: 38px;
+  }
+  .catalog-heading {
+    padding-bottom: 30px;
+  }
+  .catalog-heading h1 {
+    font-size: 82px;
+    margin: 12px 0 18px;
+  }
+  .catalog-heading p {
+    font-size: 12px;
+  }
+  .catalog-jewel {
+    width: 112px;
+    top: 12px;
+    right: -7px;
+  }
+  .category-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 23px;
+    padding: 13px 0;
+    scrollbar-width: thin;
+    scrollbar-color: #bfa787 transparent;
+  }
+  .category-nav a {
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-size: 10px;
+  }
+  .catalog-status {
+    padding: 22px 0;
+    font-size: 11px;
+  }
+  .product-grid {
+    gap: 32px 14px;
+  }
+  .product-info {
+    margin-top: 13px;
+    min-height: 106px;
+  }
+  .product-info h2 {
+    font-size: clamp(22px, 6.3vw, 28px);
+    letter-spacing: -0.045em;
+  }
+  .product-info p {
+    font-size: 10px;
+    line-height: 1.6;
+    margin-top: 7px;
+  }
+  .inquiry-link {
+    font-size: 10px;
+    margin-top: 7px;
+    min-height: 36px;
+  }
+  .product-grid .product-card:nth-child(5) .product-photo {
+    aspect-ratio: 3/2;
+  }
+  .product-grid .product-card:nth-child(5) .product-info {
+    min-height: 0;
+    display: flex;
+  }
+  .product-detail-copy h1 {
+    font-size: clamp(42px, 12vw, 59px);
+  }
+  .product-description {
+    font-size: 14px;
+  }
+  .product-detail-copy .button {
+    font-size: 10px;
+  }
+  .related > h2 {
+    font-size: 34px;
+  }
+  .related-grid .product-info h2 {
+    font-size: 25px;
+  }
+  .split-copy {
+    padding: 40px 22px;
+  }
+  .split-copy h1,
+  .contact-intro h1 {
+    font-size: 44px;
+    line-height: 1.15;
+  }
+  .editorial-heading h1,
+  .story-heading h1 {
+    font-size: 43px;
+  }
+  .chapter-copy h2 {
+    font-size: 37px;
+  }
+  .chapter-copy {
+    padding: 36px 22px 44px;
+  }
+  .chapter-number {
+    margin-bottom: 22px;
+  }
+  .form-intro h2 {
+    font-size: 43px;
+  }
+  .exclusivity h2,
+  .atelier-ending h2,
+  .thank-you h1 {
+    font-size: 46px;
+  }
+  .values h2,
+  .story-ending h2 {
+    font-size: 34px;
+  }
+  .support-page h1,
+  .faq-page h1 {
+    font-size: 43px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-ready [data-reveal="image"]::before {
+    display: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .motion-ready [data-reveal] > img {
+    opacity: 1 !important;
+    scale: 1 !important;
+  }
+  .crystal-wordmark text {
+    opacity: 1 !important;
+  }
+}

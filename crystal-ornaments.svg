@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="stone" viewBox="0 0 28 42">
+      <path d="M14 1 25 11 27 25 14 41 1 25 3 11Z" fill="#9d8765"/>
+      <path d="M14 1 19 13 14 30 9 13Z" fill="#f6ead2"/>
+      <path d="M3 11 9 13 14 41 1 25Z" fill="#c1aa80"/>
+      <path d="M25 11 19 13 14 41 27 25Z" fill="#e8d5ae"/>
+      <path d="M9 13 19 13 14 30Z" fill="#dbc392"/>
+      <path d="M3 11 14 1 9 13ZM25 11 14 1 19 13Z" fill="#fff3d8"/>
+      <path d="M14 1 25 11 27 25 14 41 1 25 3 11Z" fill="none" stroke="#947d58" stroke-width=".6"/>
+    </symbol>
+    <symbol id="green-stone" viewBox="0 0 28 42">
+      <path d="M14 1 25 11 27 25 14 41 1 25 3 11Z" fill="#305846"/>
+      <path d="M14 1 19 13 14 30 9 13Z" fill="#99b2a0"/>
+      <path d="M3 11 9 13 14 41 1 25Z" fill="#476a54"/>
+      <path d="M25 11 19 13 14 41 27 25Z" fill="#739982"/>
+      <path d="M9 13 19 13 14 30Z" fill="#38634e"/>
+      <path d="M3 11 14 1 9 13ZM25 11 14 1 19 13Z" fill="#c7d7be"/>
+    </symbol>
+  </defs>
+  <symbol id="sprig" viewBox="0 0 240 100">
+    <path d="M32 77Q108 91 204 22M82 76 82 34M126 61 162 69M155 46 153 16" fill="none" stroke="#ad9267" stroke-width=".8"/>
+    <use href="#stone" x="35" y="42" width="23" height="35" transform="rotate(-48 46 60)"/>
+    <use href="#green-stone" x="66" y="23" width="27" height="42" transform="rotate(-20 80 44)"/>
+    <use href="#stone" x="86" y="57" width="21" height="32" transform="rotate(68 96 73)"/>
+    <use href="#stone" x="107" y="23" width="24" height="37" transform="rotate(24 119 42)"/>
+    <use href="#green-stone" x="140" y="51" width="24" height="37" transform="rotate(74 152 70)"/>
+    <use href="#stone" x="139" y="7" width="20" height="31" transform="rotate(-16 149 22)"/>
+    <use href="#stone" x="176" y="16" width="20" height="31" transform="rotate(43 186 32)"/>
+    <circle cx="23" cy="72" r="2" fill="#d6bb88"/>
+    <circle cx="203" cy="15" r="2" fill="#d6bb88"/>
+    <circle cx="122" cy="84" r="1.5" fill="#ad9267"/>
+  </symbol>
+  <symbol id="chain" viewBox="0 0 320 60">
+    <path d="M0 30H112M208 30H320" stroke="currentColor" stroke-width=".65" opacity=".45"/>
+    <use href="#stone" x="111" y="23" width="10" height="15" transform="rotate(90 116 30)"/>
+    <use href="#stone" x="128" y="17" width="17" height="26" transform="rotate(-25 136 30)"/>
+    <use href="#green-stone" x="147" y="9" width="27" height="42"/>
+    <use href="#stone" x="175" y="17" width="17" height="26" transform="rotate(25 184 30)"/>
+    <use href="#stone" x="199" y="23" width="10" height="15" transform="rotate(90 204 30)"/>
+  </symbol>
+  <symbol id="cut" viewBox="0 0 140 180">
+    <g fill="none" stroke="currentColor" stroke-width=".75">
+      <path d="M70 5 126 42 135 105 70 175 5 105 14 42Z"/>
+      <path d="M70 5 98 52 93 109 70 175 47 109 42 52ZM14 42 42 52 5 105 47 109 135 105 98 52 126 42M42 52 98 52 93 109 47 109Z"/>
+    </g>
+  </symbol>
+</svg>

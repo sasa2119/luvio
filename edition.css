@@ -1,0 +1,379 @@
+/* Warm dusk palette and the arrival sequence. Static content is always available. */
+.header,
+.header.scrolled {
+  background: var(--ivory);
+  border-bottom-color: var(--line);
+}
+.header .wordmark::after {
+  display: none;
+}
+.hero-copy {
+  background: #382f27;
+  color: #eee0cc;
+  position: relative;
+}
+.hero-copy::before {
+  content: "";
+  width: 72px;
+  height: 1px;
+  background: #c6ad84;
+  position: absolute;
+  right: 0;
+  top: 91px;
+  transform-origin: right;
+  animation: thread-draw 1.3s var(--ease) both;
+}
+.hero h1 {
+  letter-spacing: -0.035em;
+  font-weight: 400;
+  line-height: 1;
+}
+.hero h1 em {
+  color: #d3b688;
+  letter-spacing: -0.04em;
+}
+.hero-intro {
+  color: #d0bfa7;
+}
+.hero-note {
+  color: #d3c5b2;
+}
+.hero-foot {
+  color: #c8b69b;
+  gap: 20px;
+}
+.hero-foot .crystal-caption {
+  color: #c8b69b;
+  font-size: 8px;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+}
+.hero-jewel {
+  width: 106px;
+}
+.hero .button {
+  background: #d8bd91;
+  border-color: #d8bd91;
+  color: #30271f;
+}
+.hero .button:hover {
+  background: #e9cfaa;
+}
+.button {
+  letter-spacing: 0.045em;
+  font-weight: 500;
+}
+.hero .text-link {
+  color: #eee0cc;
+}
+.hero-copy :focus-visible {
+  outline-color: #d8bd91;
+}
+.hero .scroll-note {
+  color: #c8b69b;
+}
+.hero-photo {
+  background: #bba485;
+}
+.hero-photo-link {
+  font-weight: 500;
+}
+.brand-ribbon {
+  background: #c7b194;
+}
+.signature-copy {
+  background: #c8b397;
+}
+.custom-teaser {
+  background: #dfcfb8;
+}
+.custom-teaser h2 {
+  letter-spacing: -0.04em;
+}
+.story-teaser {
+  background: #c7b89f;
+}
+.newsletter {
+  background: #c0aa8c;
+}
+.emerald-feature {
+  background: #2c332a;
+}
+.footer {
+  background: #28241f;
+}
+.category-nav {
+  border-color: var(--line);
+}
+.category-nav a {
+  position: relative;
+}
+.category-nav a[aria-current="page"] {
+  color: var(--ink);
+}
+.catalog-status {
+  color: var(--muted);
+}
+.catalog-heading p {
+  max-width: 290px;
+}
+.product-info h2 {
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+.product-info p {
+  color: #635342;
+}
+.inquiry-link {
+  color: #4f422f;
+}
+.tile-caption h3 {
+  font-weight: 500;
+}
+.catalog-heading h1 {
+  letter-spacing: -0.06em;
+}
+.newsletter-form input::placeholder {
+  color: #635342;
+  opacity: 1;
+}
+.gallery-main,
+.gallery-thumbnails button {
+  background: var(--sand);
+}
+.product-details summary,
+.faq-item summary {
+  font-weight: 500;
+}
+.crystal-caption {
+  letter-spacing: 0.055em;
+}
+.atelier-jewel {
+  width: 230px;
+}
+.catalog-jewel {
+  width: 200px;
+}
+.text-link svg,
+.button svg {
+  transition: transform 300ms var(--ease);
+}
+@media (hover: hover) {
+  .text-link:hover svg,
+  .button:hover svg {
+    transform: translate(2px, -2px) rotate(5deg);
+  }
+  .product-card .product-info h2 {
+    transition: color 250ms;
+  }
+  .product-card:hover .product-info h2 {
+    color: #775834;
+  }
+}
+@keyframes thread-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* A short, skippable introduction on each homepage load. No scroll lock. */
+.arrival:not([hidden]) {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: grid;
+  place-items: center;
+  background: #302a23;
+  color: #eadac2;
+  transition:
+    opacity 480ms ease,
+    visibility 480ms;
+  contain: layout paint;
+}
+.arrival-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(500px, 100%);
+}
+.arrival-kicker,
+.arrival-note {
+  font: 11px var(--sans);
+  letter-spacing: 0.14em;
+}
+.arrival-kicker {
+  text-transform: uppercase;
+  color: #c4ad8a;
+}
+.arrival-jewel {
+  width: min(640px, 100vw);
+  margin: 0;
+}
+.arrival-jewel .crystal-turn {
+  aspect-ratio: 1.65;
+}
+.arrival-jewel .crystal-turn::after {
+  display: none;
+}
+.arrival-jewel .crystal-fallback {
+  width: 40%;
+  height: 65%;
+  inset: 17.5% 30%;
+}
+.arrival-wordmark {
+  font: 400 clamp(66px, 9vw, 104px)/1.2 var(--serif);
+  letter-spacing: 0.17em;
+  padding-left: 0.17em;
+}
+.arrival-running .arrival-wordmark {
+  animation: arrival-signature 0.75s 0.75s var(--ease) both;
+}
+.arrival-running {
+  animation: arrival-open 2.1s linear both;
+}
+@keyframes arrival-open {
+  0%,
+  88% {
+    background-color: #302a23;
+  }
+  100% {
+    background-color: #302a2300;
+  }
+}
+.arrival-note {
+  margin-top: 16px;
+  color: #c4ad8a;
+  letter-spacing: 0.035em;
+}
+.arrival-skip {
+  position: absolute;
+  right: clamp(24px, 4vw, 60px);
+  bottom: max(32px, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 44px;
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid #998365;
+  color: #eadac2;
+  background: none;
+  font-size: 12px;
+}
+.arrival.arrival-leaving {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.arrival :focus-visible {
+  outline-color: #d8bd91;
+}
+@media (max-height: 550px) and (min-width: 551px) {
+  .arrival-jewel {
+    width: 360px;
+    margin: 0;
+  }
+  .arrival-wordmark {
+    font-size: 58px;
+  }
+  .arrival-note {
+    margin-top: 6px;
+  }
+}
+@keyframes arrival-signature {
+  from {
+    opacity: 0;
+    clip-path: inset(0 50%);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0);
+  }
+}
+@media (max-width: 800px) {
+  .hero-copy::before {
+    top: 56px;
+    width: 38px;
+  }
+}
+@media (max-width: 550px) {
+  .hero-copy {
+    padding-top: 35px;
+    padding-bottom: 28px;
+  }
+  .hero-copy::before {
+    top: 41px;
+    width: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(43px, 13.3vw, 60px);
+    line-height: 1.03;
+  }
+  .hero h1 em {
+    font-size: 0.88em;
+    letter-spacing: -0.045em;
+  }
+  .hero-intro {
+    font-size: 8px;
+    letter-spacing: 0.12em;
+  }
+  .hero-note {
+    font-size: 13px;
+    margin-block: 21px 24px;
+  }
+  .hero-foot {
+    gap: 20px;
+    margin-top: 25px;
+  }
+  .hero-jewel {
+    width: 92px;
+  }
+  .hero-photo {
+    margin: 0;
+  }
+  .hero-photo-link {
+    font-size: 31px;
+  }
+  .brand-ribbon {
+    padding-block: 21px;
+  }
+  .section-heading h2 {
+    font-size: clamp(36px, 10.5vw, 46px);
+  }
+  .signature-copy h2 {
+    font-size: clamp(39px, 11vw, 49px);
+  }
+  .atelier-jewel {
+    width: 200px;
+  }
+  .catalog-jewel {
+    width: 125px;
+    top: 3px;
+  }
+  .catalog-heading h1 {
+    font-size: 88px;
+  }
+  .custom-teaser {
+    padding-top: 44px;
+  }
+  .custom-teaser h2 {
+    font-size: clamp(42px, 12vw, 52px);
+  }
+  .product-info h2 {
+    font-size: clamp(24px, 6.8vw, 29px);
+  }
+  .arrival-jewel {
+    width: 100vw;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arrival {
+    display: none !important;
+  }
+  .hero-copy::before {
+    animation: none;
+  }
+}
