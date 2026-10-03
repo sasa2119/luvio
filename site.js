@@ -1,5 +1,11 @@
 const header = document.querySelector(".header");
-const updateHeader = () => header.classList.toggle("scrolled", scrollY > 30);
+let headerScrolled = header.classList.contains('scrolled');
+const updateHeader = () => {
+  const next = scrollY > 30;
+  if (next === headerScrolled) return;
+  headerScrolled = next;
+  header.classList.toggle('scrolled', next);
+};
 addEventListener("scroll", updateHeader, { passive: true });
 updateHeader();
 const menu = document.querySelector("#mobile-menu");

@@ -226,3 +226,8 @@
   .home-edition .category-tables h3 { font-size: 27px; }
   .home-edition .hero-actions { gap: 13px; }
 }
+
+/* One canvas holds the centerpiece and depth-tested orbit. */
+.custom-object .saturn-jewel { width: 100%; }
+.saturn-jewel .crystal-turn { aspect-ratio: 1.8; border-radius: 0; touch-action: pan-y; }
+.saturn-jewel .crystal-turn::after { display: none; }

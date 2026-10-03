@@ -1,13 +1,14 @@
-import { trackHeroScroll } from './hero-scroll.js';
 
-// Real faceted geometry, up to three draw calls, no textures or rendering library.
-// The renderer runs only during a short entrance/interaction and stays idle otherwise.
+
+// Faceted geometry without textures or libraries. Single stones render on demand;
+// the two-draw-call Saturn scene animates at 30 fps only while visible.
 const vertexSource = `
   attribute vec3 position;
   attribute vec3 normal;
   uniform vec3 angle;
   uniform vec3 placement;
   uniform float aspect;
+  uniform float orbitPhase;
   varying vec3 facet;
   varying vec3 point;
   varying float tableFace;
@@ -17,7 +18,7 @@ const vertexSource = `
     return mat3(z,Z,0.,-Z,z,0.,0.,0.,1.) * mat3(y,0.,-Y,0.,1.,0.,Y,0.,y) * mat3(1.,0.,0.,0.,x,X,0.,-X,x);
   }
   void main() {
-    mat3 r=rotation(angle);
+    mat3 r=rotation(angle)*rotation(vec3(0.,0.,orbitPhase));
     vec3 p=r*position*placement.z;
     facet=r*normal;
     tableFace=step(.98,normal.z);
@@ -39,7 +40,8 @@ const fragmentSource = `
     vec3 light=normalize(vec3(-.7,.9,1.5));
     float diffuse=max(dot(n,light),0.);
     float rim=pow(1.-abs(n.z),2.);
-    float flash=pow(max(dot(reflect(-light,n),vec3(0.,0.,1.)),0.),42.);
+    float flash=pow(max(dot(reflect(-light,n),vec3(0.,0.,1.)),0.),28.);
+    float sparkle=pow(max(dot(n,normalize(vec3(-.35,.7,1.))),0.),10.);
     vec3 reflectedRay=reflect(vec3(0.,0.,-1.),n);
     float reflected=smoothstep(.24,.44,abs(reflectedRay.x*.75+reflectedRay.y*.65));
     float darkBand=smoothstep(.76,.84,abs(reflectedRay.y-reflectedRay.x*.35));
@@ -48,6 +50,7 @@ const fragmentSource = `
     col=mix(col,tint*.26,darkBand*.55);
     col=mix(col,tint*.75+vec3(.18,.18,.17),tableFace*.85);
     col+=vec3(.12,.13,.14)*rim+vec3(.8,.83,.86)*flash;
+    col+=vec3(.24,.28,.24)*sparkle;
     gl_FragColor=vec4(col,1.);
   }`;
 
@@ -148,7 +151,7 @@ const showcaseFragmentSource = `
     body = mix(body, tint * .10, (1.-shadow)*.7);
     body = mix(body, tint*.3 + vec3(.3,.34,.26), internal * center * .12 * (1.-tableFace));
     float strip = smoothstep(.18,.3,abs(r.x*.7+r.y*.65));
-    vec3 reflection = mix(tint*.17, vec3(.89,.97,.86), strip*.7);
+    vec3 reflection = mix(tint*.17, vec3(.98,1.,.94), strip*.88);
     reflection = mix(reflection, vec3(1.,.98,.89), windowA*.92);
     reflection = mix(reflection, tint*.1, windowB*.75);
     vec3 color = mix(body, reflection, .62 + fresnel*.3);
@@ -162,13 +165,17 @@ const showcaseFragmentSource = `
     vec3 transmitted = mix(tint*.12, mix(tint*.7,vec3(.91,.98,.87),bright),cut);
     color = mix(color,transmitted,tableFace*.52+(1.-tableFace)*.32);
     color += tint*.12*tableFace;
-    color += vec3(1.,.98,.88) * pow(max(dot(reflect(-normalize(vec3(-.5,.8,1.4)),n),v),0.),85.) * .9;
+    float glint = pow(max(dot(reflect(-normalize(vec3(-.5,.8,1.4)),n),v),0.),48.);
+    float pinprick = pow(max(dot(n,normalize(vec3(.45,.25,1.))),0.),22.);
+    color += vec3(1.,.98,.88) * glint * 1.35;
+    color += vec3(1.,1.,.96) * pinprick * .72;
     color += vec3(.045,.075,.05) * (1. - tableFace);
     gl_FragColor = vec4(color,1.);
   }`;
 
 export function mountCrystal(scene) {
-  const showcase = scene.classList.contains('hero-gem');
+  const saturn = scene.classList.contains('saturn-jewel');
+  const showcase = scene.classList.contains('hero-gem') || saturn;
   const canvas = scene.querySelector("canvas");
   const button = scene.querySelector("button");
   const gl = canvas.getContext("webgl", {
@@ -204,20 +211,46 @@ export function mountCrystal(scene) {
     return;
   }
   const vertices = showcase ? brilliantGemstone() : gemstone();
+  // Merge the orbit once: 64 low-poly stones, one static buffer, one draw call.
+  let orbitBuffer = null, orbitCount = 0, orbitPhase = 0;
+  if (saturn) {
+    const small = gemstone(8), ring = new Float32Array(small.length * 64);
+    for (let i = 0; i < 64; i++) {
+      const a = i * Math.PI * 2 / 64, radius = 1.72 + (i % 3) * .09;
+      const scale = .035 + (i % 4) * .008;
+      const c = Math.cos(a), sn = Math.sin(a);
+      for (let j = 0; j < small.length; j += 6) {
+        const k = i * small.length + j;
+        // Flip each stone 180 degrees around its local X axis before placement.
+        // Rotate its normals too so the upside-down facets retain correct lighting.
+        ring[k] = (small[j] * c + small[j+1] * sn) * scale + c * radius;
+        ring[k+1] = (small[j] * sn - small[j+1] * c) * scale + sn * radius;
+        ring[k+2] = -small[j+2] * scale;
+        ring[k+3] = small[j+3] * c + small[j+4] * sn;
+        ring[k+4] = small[j+3] * sn - small[j+4] * c;
+        ring[k+5] = -small[j+5];
+      }
+    }
+    orbitBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, orbitBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, ring, gl.STATIC_DRAW);
+    orbitCount = ring.length / 6;
+  }
   const buffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
   gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
   gl.useProgram(program);
+  const attributes = {};
   for (const [name, offset] of [
     ["position", 0],
     ["normal", 12],
   ]) {
-    const attribute = gl.getAttribLocation(program, name);
+    const attribute = attributes[name] = gl.getAttribLocation(program, name);
     gl.enableVertexAttribArray(attribute);
     gl.vertexAttribPointer(attribute, 3, gl.FLOAT, false, 24, offset);
   }
   const uniforms = Object.fromEntries(
-    ["angle", "placement", "aspect", "tint"].map((n) => [
+    ["angle", "placement", "aspect", "tint", "orbitPhase"].map((n) => [
       n,
       gl.getUniformLocation(program, n),
     ]),
@@ -241,9 +274,12 @@ export function mountCrystal(scene) {
     lastFrame = 0,
     suppressClick = false;
   const tones = { emerald: [0.12, 0.48, 0.31], champagne: [0.91, 0.83, 0.67], clear: [0.83, 0.94, 0.91] };
-  const scrollHero = showcase ? scene.closest('.light-hero') : null;
-  const heroProgress = scrollHero ? trackHeroScroll(scrollHero) : () => 0;
-  const stones = showcase
+  const scrollProgress = () => {
+    if (scene.classList.contains('header-gem')) return window.scrollY / Math.max(600, innerHeight);
+    const box = scene.getBoundingClientRect();
+    return (innerHeight * .5 - box.top - box.height * .5) / Math.max(600, innerHeight);
+  };
+  const stones = showcase || !intro
     ? [[0, 0.08, .88, 0]]
     : [[0, 0.08, .78, 0], [-1.04, -0.48, .27, 1], [0.97, 0.54, .19, 2]];
   const secondaryTint = new Float32Array([0.22, 0.46, 0.33]);
@@ -262,9 +298,10 @@ export function mountCrystal(scene) {
     }
     const scroll = scrollCurrent;
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    bindGeometry(buffer);
     const tint = tones[scene.dataset.crystal] || tones.champagne;
     for (const [x, y, size, index] of stones) {
-      gl.uniform3f(uniforms.placement, x + scroll * .09, y + scroll * .16, size);
+      gl.uniform3f(uniforms.placement, x, y, size);
       gl.uniform3f(
         uniforms.angle,
         pitch + index * 0.2 + scroll * .55,
@@ -277,6 +314,23 @@ export function mountCrystal(scene) {
         lastTint = stoneTint;
       }
       gl.drawArrays(gl.TRIANGLES, 0, vertices.length / 6);
+    }
+    if (orbitBuffer) {
+      bindGeometry(orbitBuffer);
+      // Lower the projected orbit so it crosses the center of the main stone.
+      gl.uniform3f(uniforms.placement, 0, -.22, .86);
+      gl.uniform3f(uniforms.angle, 1.22, 0, .25);
+      gl.uniform1f(uniforms.orbitPhase, orbitPhase + scroll * .7);
+      gl.uniform3fv(uniforms.tint, tones.champagne);
+      gl.drawArrays(gl.TRIANGLES, 0, orbitCount);
+      gl.uniform1f(uniforms.orbitPhase, 0);
+      lastTint = null;
+    }
+  }
+  function bindGeometry(source) {
+    gl.bindBuffer(gl.ARRAY_BUFFER, source);
+    for (const [name, offset] of [['position', 0], ['normal', 12]]) {
+      gl.vertexAttribPointer(attributes[name], 3, gl.FLOAT, false, 24, offset);
     }
   }
   function resize() {
@@ -294,6 +348,11 @@ export function mountCrystal(scene) {
   function tick(now) {
     frame = 0;
     if (disposed || !visible || document.hidden) return;
+    // Cap autonomous orbit rendering; scroll/drag/turn responses stay immediate.
+    if (saturn && !tween && !drag && Math.abs(scrollTarget - scrollCurrent) < .001 && now - lastFrame < 32) {
+      requestDraw();
+      return;
+    }
     const dt = Math.min(2, (now - lastFrame) / 16.67 || 1);
     lastFrame = now;
     if (tween) {
@@ -308,19 +367,20 @@ export function mountCrystal(scene) {
       velocityX *= Math.pow(0.88, dt);
       velocityY *= Math.pow(0.88, dt);
     }
+    if (saturn && !reduced.matches) orbitPhase += dt * .003;
     draw();
-    if (tween || (!drag && Math.hypot(velocityX, velocityY) > 0.001) || Math.abs(scrollTarget - scrollCurrent) > .001)
+    if ((saturn && !reduced.matches) || tween || (!drag && Math.hypot(velocityX, velocityY) > 0.001) || Math.abs(scrollTarget - scrollCurrent) > .001)
       requestDraw();
   }
   function requestDraw() {
     if (!frame && visible && !document.hidden && !disposed && !contextLost)
       frame = requestAnimationFrame(tick);
   }
-  if (scrollHero) {
+  {
     let lastScroll = -1;
     window.addEventListener('scroll', () => {
       if (reduced.matches || !visible || document.hidden) return;
-      const nextScroll = heroProgress();
+      const nextScroll = scrollProgress();
       if (nextScroll !== lastScroll) {
         lastScroll = nextScroll;
         scrollTarget = nextScroll;
@@ -365,7 +425,7 @@ export function mountCrystal(scene) {
   const observer = new IntersectionObserver(
     (entries) => {
       visible = entries[0].isIntersecting;
-      if (visible && !reduced.matches) scrollTarget = heroProgress();
+      if (visible && !reduced.matches) scrollTarget = scrollProgress();
       if (!visible) stop();
       else if (!started) {
         started = true;
@@ -375,7 +435,7 @@ export function mountCrystal(scene) {
           turn(0.5, 0.4, 1500);
         } else if (!reduced.matches) turn(showcase ? .28 : .5, showcase ? .15 : .1, 1100);
         else draw();
-      } else draw();
+      } else { draw(); requestDraw(); }
     },
     { threshold: 0.1 },
   );
@@ -442,11 +502,11 @@ export function mountCrystal(scene) {
   });
   listen(document, "visibilitychange", () => {
     if (document.hidden) stop();
-    else if (visible) draw();
+    else if (visible) { draw(); requestDraw(); }
   });
   listen(reduced, "change", () => {
     stop();
-    if (visible) draw();
+    if (visible) { draw(); requestDraw(); }
   });
   listen(scene, "crystal:tone", draw);
   listen(canvas, "webglcontextlost", (event) => {
@@ -465,6 +525,7 @@ export function mountCrystal(scene) {
     resizeObserver.disconnect();
     events.abort();
     gl.deleteBuffer(buffer);
+    if (orbitBuffer) gl.deleteBuffer(orbitBuffer);
     gl.deleteProgram(program);
     gl.getExtension("WEBGL_lose_context")?.loseContext();
   };

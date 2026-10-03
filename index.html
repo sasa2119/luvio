@@ -14,12 +14,7 @@
           type="font/woff2"
           crossorigin
         />
-        <link rel="stylesheet" href="/typography.css" />
-        <link rel="stylesheet" href="/style.css" />
-        <link rel="stylesheet" href="/atelier.css" />
-        <link rel="stylesheet" href="/edition.css" />
-        <link rel="stylesheet" href="/ornaments.css" />
-        <link rel="stylesheet" href="/facets.css" />
+        <link rel="stylesheet" href="/site-styles.css" />
         
         <link rel="stylesheet" href="/home-design.css" /><script src="/home-design.js" type="module"></script>
         <script src="/facet-text.js" type="module"></script>
@@ -55,16 +50,8 @@
         <a class="skip-link" href="#main">Skip to content</a>
     <header class="header">
       <div class="header-crystals">
-        <img
-          class="header-gem header-gem-left"
-          src="/images/header-model-champagne.png"
-          alt="Decorative champagne crystal cluster"
-        />
-        <img
-          class="header-gem header-gem-right"
-          src="/images/header-model-emerald.png"
-          alt="Decorative emerald crystal cluster"
-        />
+        <img class="header-gem header-gem-left" src="/images/header-model-champagne.png" alt="Decorative champagne crystal cluster" />
+        <img class="header-gem header-gem-right" src="/images/header-model-emerald.png" alt="Decorative emerald crystal cluster" />
         <span class="header-facet-line"></span>
       </div>
       <nav aria-label="Main navigation" class="desktop-nav">
@@ -141,7 +128,15 @@
           
     <div class="crystal-scene hero-gem" data-crystal="emerald">
       <button class="crystal-turn" type="button" aria-label="Rotate the emerald crystal. Drag or use arrow keys; Home resets the view." title="Drag to explore · Arrow keys to rotate" aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight Home">
-        <img class="crystal-fallback" src="/images/facet-emerald.png" width="256" height="256" alt="" aria-hidden="true" />
+        <svg class="crystal-fallback" viewBox="0 0 160 130" aria-hidden="true">
+          <path d="M80 13 127 40 138 69 80 118 22 69 33 40Z" fill="#bba989"/>
+          <path d="M80 13 103 48 80 80 57 48Z" fill="#f3ead8"/>
+          <path d="M33 40 57 48 80 118 22 69Z" fill="#b3a18a"/>
+          <path d="M127 40 103 48 80 118 138 69Z" fill="#d7c6a9"/>
+          <path d="M57 48 103 48 80 118Z" fill="#e5dbc8"/>
+          <path d="M33 40 80 13 57 48ZM127 40 80 13 103 48Z" fill="#fff9ed"/>
+          <path d="M33 40 127 40M57 48 103 48" stroke="#fff9e8" stroke-width=".7"/>
+        </svg>
         <canvas width="240" height="180" aria-hidden="true"></canvas>
       </button>
       
@@ -150,11 +145,11 @@
       <div class="light-product-stage" role="region" aria-roledescription="carousel" aria-label="Featured LUVIO pieces">
         <div class="light-product-window">
         <figure class="light-product-frame is-active">
-          <img src="/images/home-cherry.jpg" alt="Black LUVIO T-shirt with a red crystal cherry design" width="768" height="1024" loading="eager" />
+          <img src="/images/home-cherry.jpg" alt="Black LUVIO T-shirt with a red crystal cherry design" width="768" height="1024" loading="eager" decoding="async" fetchpriority="high" />
           <figcaption><span>Cherry</span><small>Crystal T-shirt</small></figcaption>
         </figure>
         <figure class="light-product-frame" aria-hidden="true">
-          <img src="/images/hero-hummingbird.jpg" alt="White LUVIO T-shirt with a colorful crystal hummingbird design" width="960" height="1280" loading="eager" />
+          <img src="/images/hero-hummingbird.jpg" alt="White LUVIO T-shirt with a colorful crystal hummingbird design" width="960" height="1280" loading="eager" decoding="async" fetchpriority="low" />
           <figcaption><span>Hummingbird</span><small>Crystal T-shirt</small></figcaption>
         </figure>
         </div>
@@ -284,8 +279,22 @@
 
     <section class="custom-teaser section-pad">
       <div class="custom-object" data-reveal="light-object">
-        <img src="/images/facet-warm.png" width="180" height="180" alt="" loading="lazy" />
-        <span class="custom-orbit" aria-hidden="true"></span>
+        
+    <div class="crystal-scene saturn-jewel" data-crystal="champagne">
+      <button class="crystal-turn" type="button" aria-label="Rotate the champagne crystal. Drag or use arrow keys; Home resets the view." title="Drag to explore · Arrow keys to rotate" aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight Home">
+        <svg class="crystal-fallback" viewBox="0 0 160 130" aria-hidden="true">
+          <path d="M80 13 127 40 138 69 80 118 22 69 33 40Z" fill="#bba989"/>
+          <path d="M80 13 103 48 80 80 57 48Z" fill="#f3ead8"/>
+          <path d="M33 40 57 48 80 118 22 69Z" fill="#b3a18a"/>
+          <path d="M127 40 103 48 80 118 138 69Z" fill="#d7c6a9"/>
+          <path d="M57 48 103 48 80 118Z" fill="#e5dbc8"/>
+          <path d="M33 40 80 13 57 48ZM127 40 80 13 103 48Z" fill="#fff9ed"/>
+          <path d="M33 40 127 40M57 48 103 48" stroke="#fff9e8" stroke-width=".7"/>
+        </svg>
+        <canvas width="240" height="180" aria-hidden="true"></canvas>
+      </button>
+      
+    </div>
         <span class="eyebrow">One design. One customer.</span>
       </div>
       <div class="custom-letter">

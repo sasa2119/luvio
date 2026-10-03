@@ -260,7 +260,7 @@ em {
 .brand-ribbon i {
   border-radius: 0 !important;
   clip-path: none;
-  background: url("/images/facet-emerald.png") center / contain no-repeat;
+  background: none;
   border: 0 !important;
   box-shadow: none !important;
   transform: rotate(8deg);
@@ -269,7 +269,7 @@ em {
 }
 .crystal-rule i:nth-child(2n) {
   transform: rotate(-18deg) scale(0.82);
-  background-image: url("/images/facet-emerald.png");
+  background-image: none;
 }
 .crystal-rule i:nth-child(3n) {
   transform: rotate(8deg) scale(1.14);
@@ -279,7 +279,7 @@ em {
   height: 11px;
 }
 .brand-ribbon i:nth-of-type(2) {
-  background-image: url("/images/facet-emerald.png");
+  background-image: none;
 }
 .crystal-field i {
   width: 10px;
@@ -528,3 +528,12 @@ em {
   clip-path: none !important;
   transform: scaleX(1) !important;
 }
+
+.header-gem .crystal-turn { pointer-events: auto; touch-action: pan-y; }
+.studio-floating-gem .crystal-turn, .studio-copy-gem .crystal-turn { height: 100%; aspect-ratio: 1; touch-action: pan-y; }
+.micro-crystal { perspective: 100px; }
+.micro-crystal > span { display: block; position: absolute; inset: 0; transform-style: preserve-3d; }
+.micro-crystal b { position: absolute; inset: 0; background: #9bbb9f; clip-path: polygon(50% 0,100% 100%,0 100%); transform-origin: 50% 66.667%; }
+.micro-crystal b:nth-child(1) { transform: rotateY(0deg) rotateX(25deg); background: #b8cfb7; }
+.micro-crystal b:nth-child(2) { transform: rotateY(120deg) rotateX(25deg); background: #537e64; }
+.micro-crystal b:nth-child(3) { transform: rotateY(240deg) rotateX(25deg); background: #e4e9cf; }

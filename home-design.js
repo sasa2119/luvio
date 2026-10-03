@@ -36,11 +36,16 @@ if (stage) {
   let targetScroll = 0;
   let currentScroll = 0;
   let scrollFrame = 0;
+  let renderedScroll = hero.style.getPropertyValue('--hero-scroll');
   function animateScrollObjects() {
     scrollFrame = 0;
     currentScroll += (targetScroll - currentScroll) * .14;
     if (Math.abs(targetScroll - currentScroll) < .001) currentScroll = targetScroll;
-    hero.style.setProperty('--hero-scroll', currentScroll.toFixed(3));
+    const nextScroll = currentScroll.toFixed(3);
+    if (nextScroll !== renderedScroll) {
+      hero.style.setProperty('--hero-scroll', nextScroll);
+      renderedScroll = nextScroll;
+    }
     if (currentScroll !== targetScroll) scrollFrame = requestAnimationFrame(animateScrollObjects);
   }
   function syncScrollObjects() {

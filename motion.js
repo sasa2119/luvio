@@ -154,3 +154,33 @@ document.addEventListener("collection:change", () => {
       );
     });
 });
+// Tiny ornaments use CSS facets instead of allocating WebGL contexts.
+const microCrystals = new Set();
+let microFrame = 0;
+function updateMicroCrystals() {
+  if (microFrame || document.hidden) return;
+  microFrame = requestAnimationFrame(() => {
+    microFrame = 0;
+    const turn = reduced.matches ? 0 : window.scrollY * .12;
+    for (const stone of microCrystals) {
+      stone.firstElementChild.style.transform = `rotateX(18deg) rotateY(${turn}deg) rotateZ(12deg)`;
+    }
+  });
+}
+const microObserver = new IntersectionObserver(entries => {
+  for (const entry of entries) {
+    if (entry.isIntersecting) microCrystals.add(entry.target);
+    else microCrystals.delete(entry.target);
+  }
+  updateMicroCrystals();
+});
+document.querySelectorAll('.tiny-crystal, .crystal-rule i, .crystal-field i, .brand-ribbon i').forEach(stone => {
+  stone.classList.add('micro-crystal');
+  const shape = document.createElement('span');
+  shape.setAttribute('aria-hidden', 'true');
+  for (let i = 0; i < 3; i++) shape.append(document.createElement('b'));
+  stone.append(shape);
+  microObserver.observe(stone);
+});
+window.addEventListener('scroll', updateMicroCrystals, { passive: true });
+reduced.addEventListener('change', updateMicroCrystals);
