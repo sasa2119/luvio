@@ -1,13 +1,4 @@
-const header = document.querySelector(".header");
-let headerScrolled = header.classList.contains('scrolled');
-const updateHeader = () => {
-  const next = scrollY > 30;
-  if (next === headerScrolled) return;
-  headerScrolled = next;
-  header.classList.toggle('scrolled', next);
-};
-addEventListener("scroll", updateHeader, { passive: true });
-updateHeader();
+import { products } from './product-catalog.js';
 const menu = document.querySelector("#mobile-menu");
 const toggle = document.querySelector(".menu-toggle");
 toggle.addEventListener("click", () => {
@@ -54,30 +45,46 @@ document
 // Category filters keep URLs shareable, including the browser back button.
 const filters = [...document.querySelectorAll("[data-filter]")];
 if (filters.length) {
+  const collectionFilters = [...document.querySelectorAll('[data-collection-filter]')];
   const applyFilter = () => {
-    const value = new URLSearchParams(location.search).get("category") || "all";
+    const params = new URLSearchParams(location.search);
+    const value = params.get('category') === 'artwork' ? 'original-artwork' : params.get('category') || 'all';
+    const collection = params.get('collection') === 'ready-to-order' ? 'ready-to-order' : 'all';
     const valid = filters.some((a) => a.dataset.filter === value)
       ? value
       : "all";
     let count = 0;
     document.querySelectorAll(".product-grid .product-card").forEach((card) => {
-      card.hidden = valid !== "all" && card.dataset.category !== valid;
+      card.hidden = collection === 'ready-to-order' || (valid !== 'all' && card.dataset.category !== valid);
       if (!card.hidden) count++;
     });
     filters.forEach((a) => {
       if (a.dataset.filter === valid) a.setAttribute("aria-current", "true");
       else a.removeAttribute("aria-current");
+      const next = new URLSearchParams();
+      if (a.dataset.filter !== 'all') next.set('category', a.dataset.filter);
+      if (collection !== 'all') next.set('collection', collection);
+      a.href = '/shop/' + (next.size ? '?' + next : '');
     });
-    document.querySelector("#tables-empty").hidden = valid !== "tables";
+    collectionFilters.forEach((a) => {
+      if (a.dataset.collectionFilter === collection) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+      const next = new URLSearchParams();
+      if (valid !== 'all') next.set('category', valid);
+      if (a.dataset.collectionFilter !== 'all') next.set('collection', a.dataset.collectionFilter);
+      a.href = '/shop/' + (next.size ? '?' + next : '');
+    });
+    document.querySelector("#tables-empty").hidden = collection === 'ready-to-order' || valid !== "tables";
     document.querySelector("#piece-count").textContent =
-      count + " " + (count === 1 ? "piece" : "pieces");
+      count + " " + (count === 1 ? "product" : "products");
     document.querySelector("#collection-label").textContent =
-      valid === "all"
-        ? "All pieces"
-        : filters.find((a) => a.dataset.filter === valid).textContent;
+      (collection === 'ready-to-order' ? 'Ready to Order · ' : '') + (valid === 'all' ? 'All designs' : filters.find((a) => a.dataset.filter === valid).textContent);
+    document.querySelector('.category-nav').hidden = collection === 'ready-to-order';
+    document.querySelector('.catalog-status').hidden = collection === 'ready-to-order';
+    document.querySelector('.custom-order-note').hidden = collection === 'ready-to-order';
     document.dispatchEvent(new Event("collection:change"));
   };
-  filters.forEach((a) =>
+  [...filters, ...collectionFilters].forEach((a) =>
     a.addEventListener("click", (e) => {
       if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
@@ -88,18 +95,12 @@ if (filters.length) {
   addEventListener("popstate", applyFilter);
   applyFilter();
 }
-const pieceNames = {
-  cherry: "Cherry — Crystal T-Shirt",
-  hummingbird: "Hummingbird — Crystal T-Shirt",
-  headphones: "Headphones — Crystal Hoodie",
-  leopard: "Leopard — Original Crystal Artwork",
-  emerald: "Emerald — Crystal Watch Bracelet",
-};
+const pieceNames = Object.fromEntries(products.map((p) => [p.id, p.name + ' — ' + p.type]));
 const piece = new URLSearchParams(location.search).get("piece");
 const message = document.querySelector("#message");
 if (message && pieceNames[piece])
   message.value =
-    "Hello LUVIO, I would like to inquire about " + pieceNames[piece] + ".\n\n";
+    "Hello LUVIO, I would like to ask about " + pieceNames[piece] + ". Could you confirm the product details?\n\n";
 const typeField = document.querySelector("#creation-type");
 const requestedType = new URLSearchParams(location.search).get("type");
 if (typeField && [...typeField.options].some((o) => o.value === requestedType))
@@ -124,13 +125,24 @@ if (imageDialog) {
           btn.dataset.galleryImage +
           "-960.webp 960w";
       }
+      if (btn.dataset.galleryFull) {
+        enlarged.src = btn.dataset.galleryFull;
+        enlarged.removeAttribute('srcset');
+      }
       mainImage.alt = btn.querySelector("img").alt;
       enlarged.alt = mainImage.alt;
     }),
   );
   document
     .querySelector(".gallery-main")
-    .addEventListener("click", () => imageDialog.showModal());
+    .addEventListener("click", () => {
+      const active = document.querySelector('[data-gallery-image][aria-pressed="true"]');
+      if (active?.dataset.galleryFull) {
+        enlarged.src = active.dataset.galleryFull;
+        enlarged.removeAttribute('srcset');
+      }
+      imageDialog.showModal();
+    });
   imageDialog
     .querySelector(".image-close")
     .addEventListener("click", () => imageDialog.close());
@@ -220,7 +232,7 @@ addEventListener("pageshow", () =>
     if (b.dataset.label) b.innerHTML = b.dataset.label;
   }),
 );
-document.querySelectorAll("form").forEach((form) =>
+document.querySelectorAll("form:not([data-cart-add])").forEach((form) =>
   form.addEventListener("submit", (e) => {
     if (e.defaultPrevented) return;
     if (!navigator.onLine) {

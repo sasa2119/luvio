@@ -1,0 +1,135 @@
+[
+  {
+    "path": "/404/",
+    "title": "Page Not Found — LUVIO",
+    "description": "This page could not be found. Browse LUVIO products.",
+    "template": "404",
+    "noNewsletter": true
+  },
+  {
+    "path": "/contact/",
+    "title": "Contact — LUVIO",
+    "description": "Contact LUVIO about product prices, sizes, materials, availability and delivery, or ask about a custom crystal design.",
+    "template": "contact",
+    "noNewsletter": false
+  },
+  {
+    "path": "/custom-orders/",
+    "title": "Custom Orders — LUVIO",
+    "description": "Request a custom crystal design for clothing, accessories, artwork or a table. Send a photo, logo, text or idea through the request form.",
+    "template": "custom-orders",
+    "noNewsletter": false
+  },
+  {
+    "path": "/faq/",
+    "title": "Frequently Asked Questions — LUVIO",
+    "description": "Answers to questions about LUVIO products, ordering, custom designs, sizes, care and delivery.",
+    "template": "faq",
+    "noNewsletter": false
+  },
+  {
+    "path": "/",
+    "title": "LUVIO — Crystal Clothing, Accessories & Artwork",
+    "description": "Browse crystal T-shirts, hoodies, watch bracelets and framed artwork from LUVIO. Contact us for prices and sizes, or request a custom design.",
+    "template": "home",
+    "noNewsletter": false
+  },
+  {
+    "path": "/our-story/",
+    "title": "About Us — LUVIO",
+    "description": "Learn about LUVIO, the founder and our crystal clothing, accessories and artwork. Browse original designs or request your own.",
+    "template": "our-story",
+    "noNewsletter": false
+  },
+  {
+    "path": "/privacy-policy/",
+    "title": "Privacy Policy — LUVIO",
+    "description": "The final privacy policy has not yet been supplied. Inquiry forms on this website are sent through FormSubmit to hello.luvio8@gmail.com. Please contact us with any questions before submitting your details.",
+    "template": "privacy-policy",
+    "noNewsletter": true
+  },
+  {
+    "path": "/returns/",
+    "title": "Return Policy — LUVIO",
+    "description": "Contact us to confirm return terms for your product before ordering. The full return policy will be added here.",
+    "template": "returns",
+    "noNewsletter": true
+  },
+  {
+    "path": "/shipping/",
+    "title": "Shipping Policy — LUVIO",
+    "description": "Contact us with the product name and delivery destination for shipping options, costs and estimated delivery times. Full shipping details will be added here.",
+    "template": "shipping",
+    "noNewsletter": true
+  },
+  {
+    "path": "/shop/cherry/",
+    "title": "Cherry Crystal T-Shirt — LUVIO",
+    "description": "Black T-shirt with a cherry design in red and green crystals, placed by hand.",
+    "template": "shop-cherry",
+    "noNewsletter": false
+  },
+  {
+    "path": "/shop/emerald/",
+    "title": "Emerald Crystal Watch Bracelet — LUVIO",
+    "description": "Watch bracelet with green crystals and gold-toned edges. Contact us to confirm the fit for your watch and wrist.",
+    "template": "shop-emerald",
+    "noNewsletter": false
+  },
+  {
+    "path": "/shop/headphones/",
+    "title": "Headphones Crystal Hoodie — LUVIO",
+    "description": "White hoodie with a headphones design made from multicolored crystals.",
+    "template": "shop-headphones",
+    "noNewsletter": false
+  },
+  {
+    "path": "/shop/hummingbird/",
+    "title": "Hummingbird Crystal T-Shirt — LUVIO",
+    "description": "White T-shirt with a hummingbird design in colored crystals, placed by hand.",
+    "template": "shop-hummingbird",
+    "noNewsletter": false
+  },
+  {
+    "path": "/shop/",
+    "title": "Shop Crystal Products — LUVIO",
+    "description": "View LUVIO crystal T-shirts, hoodies, artwork and watch bracelets. See product photos and ask about prices, sizes and availability.",
+    "template": "shop",
+    "noNewsletter": false
+  },
+  {
+    "path": "/shop/leopard/",
+    "title": "Leopard Original Crystal Artwork — LUVIO",
+    "description": "Framed leopard portrait made with crystals on a dark background. Contact us for dimensions.",
+    "template": "shop-leopard",
+    "noNewsletter": false
+  },
+  {
+    "path": "/size-guide/",
+    "title": "Size Guide — LUVIO",
+    "description": "Contact us with the product name for available sizes and measurements. For watch bracelets, please include your watch model and wrist measurement. A full size guide will be added here.",
+    "template": "size-guide",
+    "noNewsletter": true
+  },
+  {
+    "path": "/terms/",
+    "title": "Terms & Conditions — LUVIO",
+    "description": "The final terms and conditions have not yet been supplied. Please contact us to confirm the details of a proposed order before making a commitment.",
+    "template": "terms",
+    "noNewsletter": true
+  },
+  {
+    "path": "/thank-you/",
+    "title": "Thank You — LUVIO",
+    "description": "Your message has been received. We’ll be in touch soon.",
+    "template": "thank-you",
+    "noNewsletter": true
+  },
+  {
+    "path": "/the-atelier/",
+    "title": "The Atelier — LUVIO",
+    "description": "See how LUVIO crystal products are designed and made with crystals placed by hand. Learn about design, product details, fit and care.",
+    "template": "the-atelier",
+    "noNewsletter": false
+  }
+]

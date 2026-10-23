@@ -77,7 +77,7 @@ if (arrival) {
     };
     arrival
       .querySelector(".arrival-skip")
-      .addEventListener("click", () => finish(), { signal: events.signal });
+      ?.addEventListener("click", () => finish(), { signal: events.signal });
     arrival.addEventListener(
       "animationend",
       (event) => {
@@ -158,7 +158,7 @@ document.addEventListener("collection:change", () => {
 const microCrystals = new Set();
 let microFrame = 0;
 function updateMicroCrystals() {
-  if (microFrame || document.hidden) return;
+  if (microFrame || document.hidden || !microCrystals.size) return;
   microFrame = requestAnimationFrame(() => {
     microFrame = 0;
     const turn = reduced.matches ? 0 : window.scrollY * .12;
@@ -182,5 +182,7 @@ document.querySelectorAll('.tiny-crystal, .crystal-rule i, .crystal-field i, .br
   stone.append(shape);
   microObserver.observe(stone);
 });
-window.addEventListener('scroll', updateMicroCrystals, { passive: true });
+window.addEventListener('scroll', () => {
+  if (!reduced.matches) updateMicroCrystals();
+}, { passive: true });
 reduced.addEventListener('change', updateMicroCrystals);

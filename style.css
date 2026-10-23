@@ -1659,7 +1659,13 @@ details p {
 .split-photo {
   position: relative;
   overflow: hidden;
-  max-height: 850px;
+  width: 100%;
+  max-width: 640px;
+  max-height: none;
+  min-width: 0;
+  aspect-ratio: 3/4;
+  align-self: center;
+  justify-self: center;
 }
 .split-photo > img {
   object-position: center center;
@@ -1924,7 +1930,10 @@ details p {
   gap: 0;
 }
 .contact-photo {
-  height: 440px;
+  width: min(100%, 1280px);
+  height: auto;
+  aspect-ratio: 16/9;
+  margin-inline: auto;
   overflow: hidden;
 }
 .contact-photo img {
@@ -2022,7 +2031,8 @@ details p {
   padding: 0 var(--space) 100px;
 }
 .story-image figure {
-  margin: 0;
+  max-width: 640px;
+  margin: 0 auto;
 }
 .story-image img {
   aspect-ratio: 3/4;
@@ -2270,7 +2280,7 @@ details p {
     gap: 25px;
   }
   .contact-photo {
-    height: 330px;
+    height: auto;
   }
   .atelier-chapter {
     min-height: 470px;
@@ -2415,6 +2425,7 @@ details p {
     padding: 17px 20px;
   }
   .split-photo {
+    width: calc(100% - 32px);
     aspect-ratio: 3/4;
     margin: 0 16px;
   }
@@ -2499,7 +2510,8 @@ details p {
     width: 100%;
   }
   .contact-photo {
-    height: 270px;
+    height: auto;
+    aspect-ratio: 5/4;
   }
   .thank-you {
     min-height: 65vh;

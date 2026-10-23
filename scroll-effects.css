@@ -1,0 +1,82 @@
+/* Faceted entrances, brushed light, and a crystal reading line.
+   Native scroll timelines run without per-frame JavaScript or layout writes. */
+.scroll-sheen,
+.scroll-progress { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Clip these sections without creating a nested scroll timeline. */
+  .scroll-native .signature,
+  .scroll-native .artwork-feature { overflow: clip; }
+  .scroll-photo { position: relative; overflow: hidden; }
+  .scroll-native .scroll-card {
+    animation: luvio-card-rise auto linear both;
+    animation-timeline: view(block);
+    animation-range: entry calc(var(--scroll-order, 0) * 8%) entry 100%;
+    transform-origin: 50% 100%;
+  }
+  .scroll-native .scroll-photo {
+    view-timeline-name: --luvio-photo;
+    view-timeline-axis: block;
+    animation: luvio-photo-open auto linear both;
+    animation-timeline: view(block);
+    animation-range: entry 0% entry 100%;
+    transform-origin: 50% 80%;
+  }
+  .scroll-native .scroll-sheen {
+    display: block;
+    position: absolute;
+    inset: -15% auto -15% 0;
+    width: 36%;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, #fff3d739, #fff9e775, transparent);
+    animation: luvio-light-pass auto linear both;
+    animation-timeline: --luvio-photo;
+    animation-range: entry 0% cover 55%;
+  }
+  .scroll-native .light-product-stage {
+    animation: luvio-hero-depth auto linear both;
+    animation-timeline: view(block);
+    animation-range: exit 0% exit 100%;
+    transform-origin: 70% 25%;
+  }
+  /* Keyboard users always see the complete focused control immediately. */
+  .scroll-native .scroll-card:focus-within,
+  .scroll-native .scroll-photo:focus-within {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes luvio-card-rise {
+  from { opacity: .3; transform: translate3d(0, 64px, 0) rotate(var(--scroll-tilt, -2deg)) scale(.94); }
+  75% { opacity: 1; }
+  to { opacity: 1; transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+}
+@keyframes luvio-photo-open {
+  from { opacity: .45; transform: translate3d(0, 48px, 0) scale(.96); }
+  70% { opacity: 1; }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes luvio-light-pass {
+  from { opacity: 0; transform: translate3d(-180%, 0, 0) skewX(-18deg); }
+  25% { opacity: .7; }
+  70% { opacity: .4; }
+  to { opacity: 0; transform: translate3d(420%, 0, 0) skewX(-18deg); }
+}
+@keyframes luvio-hero-depth {
+  from { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  to { transform: translate3d(0, -56px, 0) rotate(-2deg) scale(.95); }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+  @keyframes luvio-card-rise {
+    from { opacity: .5; transform: translate3d(0, 28px, 0) scale(.97); }
+    to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  }
+  @keyframes luvio-photo-open {
+    from { opacity: .65; transform: translate3d(0, 24px, 0) scale(.98); }
+    to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  }
+  .scroll-native .light-product-stage { animation: none; }
+}

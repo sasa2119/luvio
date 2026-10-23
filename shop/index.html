@@ -1,46 +1,33 @@
-<!doctype html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#d6c5ae" />
-        <meta name="description" content="Explore LUVIO crystal T-shirts, hoodies, original artwork, and bracelets. Inquire about a piece or create something personal." />
-        <title>Shop the Collection — LUVIO</title>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link
-          rel="preload"
-          href="/fonts/facets-1.woff2"
-          as="font"
-          type="font/woff2"
-          crossorigin
-        />
-        <link rel="stylesheet" href="/site-styles.css" />
-        
-        
-        <script src="/facet-text.js" type="module"></script>
-        <script src="/site.js" defer></script>
-        <script src="/motion.js" type="module"></script>
-      </head>
-      <body>
-        
-        <a class="skip-link" href="#main">Skip to content</a>
+<!doctype html><html lang="en"><head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#d6c5ae" />
+    <meta name="description" content="Explore LUVIO T-shirts, hoodies, bracelets and crystal artwork. Shop existing designs, each made by hand after you order. Prices in USD." /><title>Shop Made-to-Order Crystal Designs — LUVIO</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" /><link rel="preload" href="/fonts/facets-1.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/site-styles.css?v=20261022-commerce" />
+
+
+    <link rel="stylesheet" href="/shopping.css?v=20261022-commerce" />
+
+    <script src="/facet-text.js" type="module"></script><script src="/site.js?v=20261022-commerce" type="module"></script><script src="/cart.js?v=20261022-commerce" type="module"></script><script src="/motion.js?v=20261015-scroll" type="module"></script>
+  </head><body>        <a class="skip-link" href="#main">Skip to content</a>
     <header class="header">
       <div class="header-crystals">
-        <img class="header-gem header-gem-left" src="/images/header-model-champagne.png" alt="Decorative champagne crystal cluster" />
-        <img class="header-gem header-gem-right" src="/images/header-model-emerald.png" alt="Decorative emerald crystal cluster" />
+        <img class="header-gem header-gem-left" src="/images/header-model-champagne.png" width="231" height="159" alt="Decorative champagne crystal cluster" />
+        <img class="header-gem header-gem-right" src="/images/header-model-emerald.png" width="201" height="139" alt="Decorative emerald crystal cluster" />
         <span class="header-facet-line"></span>
       </div>
       <nav aria-label="Main navigation" class="desktop-nav">
         <a
-                
+
                 href="/"
                 >Home</a
-              ><a
-                aria-current="page"
+              ><a aria-current="page"
+
+                class="nav-shop"
                 href="/shop/"
                 >Shop</a
               ><a
-                
+
+
                 href="/custom-orders/"
                 >Custom Orders</a
               >
@@ -48,21 +35,23 @@
       <a class="logo-slot" href="/" aria-label="LUVIO home"
         ><span class="wordmark" aria-hidden="true">LUVIO</span></a
       >
+      <a aria-current="page" class="mobile-shop" href="/shop/" >Shop</a>
       <nav aria-label="About LUVIO" class="desktop-nav nav-right">
         <a
-                
+
                 href="/the-atelier/"
                 >The Atelier</a
               ><a
-                
+
                 href="/our-story/"
                 >About Us</a
               ><a
-                
+
                 href="/contact/"
                 >Contact</a
               >
       </nav>
+      <button class="cart-toggle" type="button" data-cart-open aria-label="Open shopping bag" aria-haspopup="dialog" aria-controls="shopping-bag"><svg viewBox="0 0 24 26" fill="none" aria-hidden="true"><path d="M4 8h16l1 16H3L4 8Z M8 9V6a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.3"/></svg><span class="cart-count" data-cart-count hidden>0</span></button>
       <button
         class="menu-toggle"
         aria-expanded="false"
@@ -75,271 +64,93 @@
     <dialog id="mobile-menu" class="mobile-menu" aria-label="Navigation">
       <div class="menu-top"><span class="eyebrow">LUVIO</span></div>
       <nav aria-label="Mobile navigation">
-        <a href="/"  style="--order:0"><sup>01</sup>Home<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a><a href="/shop/" aria-current="page" style="--order:1"><sup>02</sup>Shop<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a><a href="/custom-orders/"  style="--order:2"><sup>03</sup>Custom Orders<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a><a href="/the-atelier/"  style="--order:3"><sup>04</sup>The Atelier<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a><a href="/our-story/"  style="--order:4"><sup>05</sup>About Us<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a><a href="/contact/"  style="--order:5"><sup>06</sup>Contact<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a>
+        <a href="/" style="--order:0"><sup>01</sup>Home<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a><a aria-current="page" href="/shop/" class="nav-shop"  style="--order:1"><sup>02</sup>Shop<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a><a href="/custom-orders/"   style="--order:2"><sup>03</sup>Custom Orders<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a><a href="/the-atelier/"   style="--order:3"><sup>04</sup>The Atelier<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a><a href="/our-story/"   style="--order:4"><sup>05</sup>About Us<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a><a href="/contact/"   style="--order:5"><sup>06</sup>Contact<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a>
       </nav>
       <div class="crystal-field" aria-hidden="true">
     <i style="--i:0;--x:48%;--y:55%"></i><i style="--i:1;--x:50%;--y:48%"></i><i style="--i:2;--x:52%;--y:55%"></i>
   </div>
     </dialog>
-        <main id="main"><section class="catalog section-pad">
-    <div class="catalog-heading">
-      
-    <div class="crystal-scene catalog-jewel" data-crystal="emerald">
-      <button class="crystal-turn" type="button" aria-label="Rotate the emerald crystal. Drag or use arrow keys; Home resets the view." title="Drag to explore · Arrow keys to rotate" aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight Home">
-        <svg class="crystal-fallback" viewBox="0 0 160 130" aria-hidden="true">
-          <path d="M80 13 127 40 138 69 80 118 22 69 33 40Z" fill="#bba989"/>
-          <path d="M80 13 103 48 80 80 57 48Z" fill="#f3ead8"/>
-          <path d="M33 40 57 48 80 118 22 69Z" fill="#b3a18a"/>
-          <path d="M127 40 103 48 80 118 138 69Z" fill="#d7c6a9"/>
-          <path d="M57 48 103 48 80 118Z" fill="#e5dbc8"/>
-          <path d="M33 40 80 13 57 48ZM127 40 80 13 103 48Z" fill="#fff9ed"/>
-          <path d="M33 40 127 40M57 48 103 48" stroke="#fff9e8" stroke-width=".7"/>
-        </svg>
-        <canvas width="240" height="180" aria-hidden="true"></canvas>
-      </button>
-      
-    </div><span class="eyebrow"
-        >The collection</span
-      >
-      <h1>Shop</h1>
-      <p>Original pieces. Finished by hand.</p>
-    </div>
-    <nav class="category-nav" aria-label="Collection categories">
-      <a href="/shop/" data-filter="all" aria-current="true">All</a
-      ><a href="/shop/?category=t-shirts" data-filter="t-shirts">T-Shirts</a><a href="/shop/?category=hoodies" data-filter="hoodies">Hoodies</a><a href="/shop/?category=original-artwork" data-filter="original-artwork">Original Artwork</a><a href="/shop/?category=bracelets" data-filter="bracelets">Bracelets</a><a href="/shop/?category=tables" data-filter="tables">Tables</a>
-    </nav>
-    <div class="catalog-status" aria-live="polite">
-      <span id="collection-label">All pieces</span
-      ><span id="piece-count">5 pieces</span>
-    </div>
-    <div class="product-grid"><article class="product-card" data-category="t-shirts">
-    <a class="product-photo" href="/shop/cherry/"
-      ><img
-    class=""
-    src="/images/cherry-960.webp"
-    srcset="/images/cherry-480.webp 480w, /images/cherry-960.webp 960w"
-    sizes="(max-width: 650px) 100vw, 55vw"
-    alt="Black LUVIO T-shirt with a red and green crystal cherry design"
-    width="960"
-    height="1280"
-    loading="lazy"
-    decoding="async"
-  /><img
-    class="product-alternate"
-    src="/images/cherry-model-960.webp"
-    srcset="/images/cherry-model-480.webp 480w, /images/cherry-model-960.webp 960w"
-    sizes="(max-width: 650px) 100vw, 55vw"
-    alt="Black LUVIO T-shirt with a red and green crystal cherry design styled with jeans"
-    width="960"
-    height="1280"
-    loading="lazy"
-    decoding="async"
-  /><span
-        class="product-view"
-        >View piece <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></span
-      ></a
-    >
-    <div class="product-info">
-      <div>
-        <h2><a href="/shop/cherry/">Cherry</a></h2>
-        <p>Crystal T-Shirt</p>
-      </div>
-      <a
-        class="inquiry-link"
-        href="/contact/?piece=cherry"
-        aria-label="Inquire about Cherry"
-        >Inquiry <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a
-      >
-    </div>
-  </article><article class="product-card" data-category="t-shirts">
-    <a class="product-photo" href="/shop/hummingbird/"
-      ><img
-    class=""
-    src="/images/hummingbird-960.webp"
-    srcset="/images/hummingbird-480.webp 480w, /images/hummingbird-960.webp 960w"
-    sizes="(max-width: 650px) 100vw, 55vw"
-    alt="White LUVIO T-shirt with an emerald and ruby colored crystal hummingbird"
-    width="960"
-    height="1280"
-    loading="lazy"
-    decoding="async"
-  /><img
-    class="product-alternate"
-    src="/images/hummingbird-model-960.webp"
-    srcset="/images/hummingbird-model-480.webp 480w, /images/hummingbird-model-960.webp 960w"
-    sizes="(max-width: 650px) 100vw, 55vw"
-    alt="White LUVIO T-shirt with an emerald and ruby colored crystal hummingbird styled with jeans"
-    width="960"
-    height="1280"
-    loading="lazy"
-    decoding="async"
-  /><span
-        class="product-view"
-        >View piece <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></span
-      ></a
-    >
-    <div class="product-info">
-      <div>
-        <h2><a href="/shop/hummingbird/">Hummingbird</a></h2>
-        <p>Crystal T-Shirt</p>
-      </div>
-      <a
-        class="inquiry-link"
-        href="/contact/?piece=hummingbird"
-        aria-label="Inquire about Hummingbird"
-        >Inquiry <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a
-      >
-    </div>
-  </article><article class="product-card" data-category="hoodies">
-    <a class="product-photo" href="/shop/headphones/"
-      ><img
-    class=""
-    src="/images/headphones-960.webp"
-    srcset="/images/headphones-480.webp 480w, /images/headphones-960.webp 960w"
-    sizes="(max-width: 650px) 100vw, 55vw"
-    alt="White LUVIO hoodie with multicolored crystal headphones"
-    width="960"
-    height="1280"
-    loading="lazy"
-    decoding="async"
-  /><span
-        class="product-view"
-        >View piece <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></span
-      ></a
-    >
-    <div class="product-info">
-      <div>
-        <h2><a href="/shop/headphones/">Headphones</a></h2>
-        <p>Crystal Hoodie</p>
-      </div>
-      <a
-        class="inquiry-link"
-        href="/contact/?piece=headphones"
-        aria-label="Inquire about Headphones"
-        >Inquiry <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a
-      >
-    </div>
-  </article><article class="product-card" data-category="original-artwork">
-    <a class="product-photo" href="/shop/leopard/"
-      ><img
-    class=""
-    src="/images/artwork-960.webp"
-    srcset="/images/artwork-480.webp 480w, /images/artwork-960.webp 960w"
-    sizes="(max-width: 650px) 100vw, 55vw"
-    alt="Framed crystal leopard artwork displayed above a black console"
-    width="1280"
-    height="1015"
-    loading="lazy"
-    decoding="async"
-  /><span
-        class="product-view"
-        >View piece <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></span
-      ></a
-    >
-    <div class="product-info">
-      <div>
-        <h2><a href="/shop/leopard/">Leopard</a></h2>
-        <p>Original Crystal Artwork</p>
-      </div>
-      <a
-        class="inquiry-link"
-        href="/contact/?piece=leopard"
-        aria-label="Inquire about Leopard"
-        >Inquiry <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a
-      >
-    </div>
-  </article><article class="product-card" data-category="bracelets">
-    <a class="product-photo" href="/shop/emerald/"
-      ><img
-    class=""
-    src="/images/emerald-960.webp"
-    srcset="/images/emerald-480.webp 480w, /images/emerald-960.webp 960w"
-    sizes="(max-width: 650px) 100vw, 55vw"
-    alt="Emerald green crystal watch bracelet with gold-toned edges"
-    width="1280"
-    height="853"
-    loading="lazy"
-    decoding="async"
-  /><span
-        class="product-view"
-        >View piece <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></span
-      ></a
-    >
-    <div class="product-info">
-      <div>
-        <h2><a href="/shop/emerald/">Emerald</a></h2>
-        <p>Crystal Watch Bracelet</p>
-      </div>
-      <a
-        class="inquiry-link"
-        href="/contact/?piece=emerald"
-        aria-label="Inquire about Emerald"
-        >Inquiry <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a
-      >
-    </div>
+<main id="main"><section class="catalog section-pad" aria-label="Shop products">
+    <h1 class="sr-only">Shop LUVIO designs</h1>
+    <nav class="collection-nav" aria-label="Order collection"><a href="/shop/" data-collection-filter="all" aria-current="true">All designs</a><a href="/shop/?collection=ready-to-order" data-collection-filter="ready-to-order">Ready to Order</a><a href="/custom-orders/">Custom Orders <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a></nav>
+    <nav class="category-nav" aria-label="Product categories"><a href="/shop/" data-filter="all" aria-current="true">All</a><a href="/shop/?category=t-shirts" data-filter="t-shirts">T-Shirts</a><a href="/shop/?category=hoodies" data-filter="hoodies">Hoodies</a><a href="/shop/?category=bracelets" data-filter="bracelets">Bracelets</a><a href="/shop/?category=original-artwork" data-filter="original-artwork">Artwork</a><a href="/shop/?category=tables" data-filter="tables">Tables</a></nav>
+    <div class="catalog-status" aria-live="polite"><span id="collection-label">All designs</span><span id="piece-count">6 products</span></div>
+    <div class="product-grid"><article class="product-card" data-product="cherry" data-category="t-shirts" data-collection="ready-to-order">
+    <a class="product-photo" href="/shop/cherry/"><img class="" src="/images/cherry-960.webp" srcset="/images/cherry-480.webp 480w, /images/cherry-960.webp 960w" sizes="(max-width: 650px) 100vw, 50vw" alt="Black LUVIO T-shirt with a red and green crystal cherry design" width="960" height="1280" loading="lazy" decoding="async" /><img class="product-alternate" src="/images/cherry-model-960.webp" srcset="/images/cherry-model-480.webp 480w, /images/cherry-model-960.webp 960w" sizes="(max-width: 650px) 100vw, 50vw" alt="Black LUVIO crystal cherry T-shirt styled with jeans" width="960" height="1280" loading="lazy" decoding="async" /><span class="product-view">View product <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></span></a>
+    <div class="product-info"><div><h2><a href="/shop/cherry/">Cherry</a></h2><p class="product-price" >$119 USD</p><span class="made-to-order">Made to order</span></div></div>
+    <form class="add-to-cart-form card-add-form" data-cart-add data-product="cherry" action="/contact/" method="get">
+    <input type="hidden" name="piece" value="cherry" />
+
+
+    <input type="hidden" name="quantity" value="1" />
+    <button class="card-add" type="submit"><span>Add to Cart</span><span aria-hidden="true">+</span></button>
+    <p class="cart-form-error" role="alert" hidden></p>
+    <noscript><p>JavaScript is needed for the shopping bag. <a href="/contact/?piece=cherry">Send a product inquiry</a>.</p></noscript>
+  </form>
+  </article><article class="product-card" data-product="hummingbird" data-category="t-shirts" data-collection="ready-to-order">
+    <a class="product-photo" href="/shop/hummingbird/"><img class="" src="/images/hummingbird-960.webp" srcset="/images/hummingbird-480.webp 480w, /images/hummingbird-960.webp 960w" sizes="(max-width: 650px) 100vw, 50vw" alt="White LUVIO T-shirt with a colorful crystal hummingbird" width="960" height="1280" loading="lazy" decoding="async" /><img class="product-alternate" src="/images/hummingbird-model-960.webp" srcset="/images/hummingbird-model-480.webp 480w, /images/hummingbird-model-960.webp 960w" sizes="(max-width: 650px) 100vw, 50vw" alt="White LUVIO crystal hummingbird T-shirt styled with jeans" width="960" height="1280" loading="lazy" decoding="async" /><span class="product-view">View product <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></span></a>
+    <div class="product-info"><div><h2><a href="/shop/hummingbird/">Hummingbird</a></h2><p class="product-price" >$119 USD</p><span class="made-to-order">Made to order</span></div></div>
+    <form class="add-to-cart-form card-add-form" data-cart-add data-product="hummingbird" action="/contact/" method="get">
+    <input type="hidden" name="piece" value="hummingbird" />
+
+
+    <input type="hidden" name="quantity" value="1" />
+    <button class="card-add" type="submit"><span>Add to Cart</span><span aria-hidden="true">+</span></button>
+    <p class="cart-form-error" role="alert" hidden></p>
+    <noscript><p>JavaScript is needed for the shopping bag. <a href="/contact/?piece=hummingbird">Send a product inquiry</a>.</p></noscript>
+  </form>
+  </article><article class="product-card" data-product="leopard" data-category="original-artwork" data-collection="ready-to-order">
+    <a class="product-photo" href="/shop/leopard/"><img class="" src="/images/leopard-close-960.webp" srcset="/images/leopard-close-480.webp 480w, /images/leopard-close-960.webp 960w" sizes="(max-width: 650px) 100vw, 50vw" alt="Close view of the crystal leopard portrait in a black frame" width="960" height="1280" loading="lazy" decoding="async" /><img class="product-alternate" src="/images/leopard-room-960.webp" srcset="/images/leopard-room-480.webp 480w, /images/leopard-room-960.webp 960w" sizes="(max-width: 650px) 100vw, 50vw" alt="Framed crystal leopard artwork displayed above a black console in a sunlit living room" width="1122" height="1402" loading="lazy" decoding="async" /><span class="product-view">View product <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></span></a>
+    <div class="product-info"><div><h2><a href="/shop/leopard/">Leopard</a></h2><p class="product-price" >$899 USD</p><span class="made-to-order">Made to order</span></div></div>
+    <form class="add-to-cart-form card-add-form" data-cart-add data-product="leopard" action="/contact/" method="get">
+    <input type="hidden" name="piece" value="leopard" />
+
+
+    <input type="hidden" name="quantity" value="1" />
+    <button class="card-add" type="submit"><span>Add to Cart</span><span aria-hidden="true">+</span></button>
+    <p class="cart-form-error" role="alert" hidden></p>
+    <noscript><p>JavaScript is needed for the shopping bag. <a href="/contact/?piece=leopard">Send a product inquiry</a>.</p></noscript>
+  </form>
+  </article><article class="product-card" data-product="horse" data-category="original-artwork" data-collection="ready-to-order">
+    <a class="product-photo" href="/shop/horse/"><img class="" src="/images/horse-960.webp" srcset="/images/horse-480.webp 480w, /images/horse-960.webp 960w" sizes="(max-width: 650px) 100vw, 50vw" alt="Close view of a silver crystal horse on black, framed in an ornate gold frame" width="1122" height="1402" loading="lazy" decoding="async" /><img class="product-alternate" src="/images/horse-room-960.webp" srcset="/images/horse-room-480.webp 480w, /images/horse-room-960.webp 960w" sizes="(max-width: 650px) 100vw, 50vw" alt="Crystal horse artwork in an ornate gold frame displayed above a brown sofa in a sunlit living room" width="1122" height="1402" loading="lazy" decoding="async" /><span class="product-view">View product <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></span></a>
+    <div class="product-info"><div><h2><a href="/shop/horse/">Crystal Horse Artwork</a></h2><p class="product-price" >$749 USD</p><span class="made-to-order">Made to order</span></div></div>
+    <form class="add-to-cart-form card-add-form" data-cart-add data-product="horse" action="/contact/" method="get">
+    <input type="hidden" name="piece" value="horse" />
+
+
+    <input type="hidden" name="quantity" value="1" />
+    <button class="card-add" type="submit"><span>Add to Cart</span><span aria-hidden="true">+</span></button>
+    <p class="cart-form-error" role="alert" hidden></p>
+    <noscript><p>JavaScript is needed for the shopping bag. <a href="/contact/?piece=horse">Send a product inquiry</a>.</p></noscript>
+  </form>
+  </article><article class="product-card" data-product="emerald" data-category="bracelets" data-collection="ready-to-order">
+    <a class="product-photo" href="/shop/emerald/"><img class="" src="/images/emerald-960.webp" srcset="/images/emerald-480.webp 480w, /images/emerald-960.webp 960w" sizes="(max-width: 650px) 100vw, 50vw" alt="Emerald green crystal watch bracelet with gold-toned edges" width="1280" height="853" loading="lazy" decoding="async" /><span class="product-view">View product <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></span></a>
+    <div class="product-info"><div><h2><a href="/shop/emerald/">Emerald</a></h2><p class="product-price" >$119 USD<small>$49 USD when you order at least one other item</small></p><span class="made-to-order">Made to order</span></div></div>
+    <form class="add-to-cart-form card-add-form" data-cart-add data-product="emerald" action="/contact/" method="get">
+    <input type="hidden" name="piece" value="emerald" />
+
+
+    <input type="hidden" name="quantity" value="1" />
+    <button class="card-add" type="submit"><span>Add to Cart</span><span aria-hidden="true">+</span></button>
+    <p class="cart-form-error" role="alert" hidden></p>
+    <noscript><p>JavaScript is needed for the shopping bag. <a href="/contact/?piece=emerald">Send a product inquiry</a>.</p></noscript>
+  </form>
+  </article><article class="product-card" data-product="headphones" data-category="hoodies" data-collection="ready-to-order">
+    <a class="product-photo" href="/shop/headphones/"><img class="" src="/images/headphones-960.webp" srcset="/images/headphones-480.webp 480w, /images/headphones-960.webp 960w" sizes="(max-width: 650px) 100vw, 50vw" alt="White LUVIO hoodie with multicolored crystal headphones" width="960" height="1280" loading="lazy" decoding="async" /><span class="product-view">View product <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></span></a>
+    <div class="product-info"><div><h2><a href="/shop/headphones/">Headphones</a></h2><p class="product-price" >$199 USD</p><span class="made-to-order">Made to order</span></div></div>
+    <form class="add-to-cart-form card-add-form" data-cart-add data-product="headphones" action="/contact/" method="get">
+    <input type="hidden" name="piece" value="headphones" />
+
+
+    <input type="hidden" name="quantity" value="1" />
+    <button class="card-add" type="submit"><span>Add to Cart</span><span aria-hidden="true">+</span></button>
+    <p class="cart-form-error" role="alert" hidden></p>
+    <noscript><p>JavaScript is needed for the shopping bag. <a href="/contact/?piece=headphones">Send a product inquiry</a>.</p></noscript>
+  </form>
   </article></div>
-    <div id="tables-empty" class="collection-empty" hidden>
-      <span class="eyebrow">Tables</span>
-      <h2>A piece for<br /><em>your space.</em></h2>
-      <p>
-        Table photography is coming soon. Share your idea with us to explore a
-        custom creation.
-      </p>
-      <a
-    class="button "
-    href="/custom-orders/?type=Table#custom-form"
-    ><span>Discuss a custom table</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a
-  ><div class="crystal-field" aria-hidden="true">
-    <i style="--i:0;--x:48%;--y:55%"></i><i style="--i:1;--x:50%;--y:48%"></i><i style="--i:2;--x:52%;--y:55%"></i>
-  </div>
-    </div>
-  </section></main>
-        <section class="newsletter section-pad">
-    <div>
-      <span class="eyebrow">An invitation</span>
-      <h2>Join the LUVIO circle.</h2>
-      <p>
-        Be the first to discover new pieces, limited releases,<br
-          class="desktop-break"
-        />
-        and exclusive updates from LUVIO.
-      </p>
-    </div>
-    <form
-      action="https://formsubmit.co/hello.luvio8@gmail.com"
-      method="POST"
-      class="newsletter-form"
-    >
-      <input type="hidden" name="_subject" value="New LUVIO Circle Signup" /><input
-      type="hidden"
-      name="_template"
-      value="table"
-    /><input type="hidden" name="_next" value="" /><input
-      class="honeypot"
-      type="text"
-      name="_honey"
-      tabindex="-1"
-      autocomplete="off"
-      aria-hidden="true"
-    /><label for="circle-email"
-        >Your email address</label
-      >
-      <div>
-        <input
-          id="circle-email"
-          type="email"
-          name="email"
-          autocomplete="email"
-          required
-          placeholder="Enter your email"
-        /><button type="submit">Join LUVIO <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></button>
-      </div>
-      <p class="fineprint">
-        By joining, you agree to receive LUVIO updates.
-        <a href="/privacy-policy/">Privacy Policy</a>
-      </p>
-    </form>
-  </section> <footer class="footer section-pad">
+    <div id="tables-empty" class="collection-empty" hidden><span class="eyebrow">Tables</span><h2>Custom<br /><em>crystal tables.</em></h2><p>Product photos are not available yet. Send us your table idea to discuss the design, size and price.</p><a class="button " href="/custom-orders/?type=Table#custom-form"><span>Discuss a custom table</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a></div>
+    <div class="custom-order-note"><span class="eyebrow">A design that is yours alone</span><p>Ready to Order pieces use our existing designs and are made after you order. For a new design, photo, logo, or personal idea, request a custom order. Custom work is quoted individually.</p><a class="text-link" href="/custom-orders/">Request a custom design <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a></div>
+  </section></main><footer class="footer section-pad">
     <div class="footer-main">
       <div class="footer-intro">
         <div
@@ -347,15 +158,15 @@
           aria-label="Space reserved for the LUVIO logo"
         ></div>
         <span class="eyebrow">LUVIO</span>
-        <p>Created to celebrate<br /><em>your uniqueness.</em></p>
+
       </div>
       <div>
-        <h3>Shop</h3>
+        <h3>Shop</h3><a href="/shop/?collection=ready-to-order">Ready to Order</a>
         <a href="/shop/?category=t-shirts">T-Shirts</a><a href="/shop/?category=hoodies">Hoodies</a><a href="/shop/?category=original-artwork">Original Artwork</a><a href="/shop/?category=bracelets">Bracelets</a><a href="/shop/?category=tables">Tables</a>
       </div>
       <div>
         <h3>Customer Care</h3>
-        <a href="/shipping/">Shipping</a><a href="/returns/">Returns</a><a href="/care-guide/">Care Guide</a><a href="/size-guide/">Size Guide</a><a href="/faq/">FAQ</a>
+        <a href="/shipping/">Shipping</a><a href="/returns/">Returns</a><a href="/contact/">Contact LUVIO for care</a><a href="/size-guide/">Size Guide</a><a href="/faq/">FAQ</a>
       </div>
       <div>
         <h3>About</h3>
@@ -366,12 +177,17 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 LUVIO</span
-      ><span>Made with intention. Finished by hand.</span>
+      ><span>Original designs.</span>
       <div>
         <a href="/privacy-policy/">Privacy Policy</a
         ><a href="/terms/">Terms & Conditions</a>
       </div>
     </div>
   </footer>
-      </body>
-    </html>
+      <dialog id="shopping-bag" class="cart-drawer" aria-labelledby="bag-title">
+  <div class="bag-heading"><div><span class="eyebrow">LUVIO</span><h2 id="bag-title">Your bag</h2></div><button class="bag-close" type="button" data-cart-close aria-label="Close shopping bag">×</button></div>
+  <div class="bag-empty" data-cart-empty><p>Choose a design to make your own.</p><a class="button " href="/shop/?collection=ready-to-order"><span>Explore Ready to Order</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a></div>
+  <ul class="bag-items" data-cart-items aria-label="Products in your bag"></ul>
+  <div class="bag-summary" data-cart-summary hidden><div class="bag-subtotal"><span>Subtotal</span><strong data-cart-subtotal></strong></div><p>Every piece is made by hand after you order. Shipping is shown at checkout. Include your size or watch details with your selection.</p><a class="button bag-inquiry" href="/checkout/" data-checkout-open><span>Checkout</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a><a class="text-link" href="/contact/?order=cart#order-inquiry" data-order-inquiry>Ask about your order <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a><a class="text-link" href="/shop/?collection=ready-to-order">Continue browsing <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.3"/></svg></a></div>
+  <p class="bag-error" data-cart-error role="alert" hidden></p>
+</dialog><p class="sr-only" role="status" aria-live="polite" data-cart-status></p></body></html>

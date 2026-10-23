@@ -1,0 +1,130 @@
+/* Product discovery and inquiry, using the existing LUVIO palette and type. */
+.mobile-shop { display: none; }
+.header .desktop-nav .nav-shop {
+  min-height: 44px;
+  padding: 11px 18px;
+  margin-inline: -6px;
+  letter-spacing: .12em;
+}
+.header .desktop-nav { align-items: center; }
+.button { min-height: 56px; font-weight: 600; border-width: 1px; }
+.button:focus-visible { outline: 2px solid var(--gold); outline-offset: 5px; }
+.button:active { transform: translateY(1px); background: #4b3a29; }
+.button-outline:active { background: var(--sand); }
+.product-card { position: relative; min-width: 0; }
+.product-card:focus-within { outline: 2px solid var(--gold); outline-offset: 6px; }
+.product-card .product-photo { z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr); aspect-ratio: auto; isolation: isolate; }
+.product-card .product-photo > img { grid-area: 1 / 1; position: relative; inset: auto; width: 100%; height: auto; aspect-ratio: 3/4; object-fit: cover; object-position: center top; padding: 0; }
+.product-card[data-category="bracelets"] .product-photo > img { object-position: 67% center; }
+.product-card[data-category="original-artwork"] .product-photo > img { object-position: 60% center; }
+.product-card .product-view {
+  display: flex;
+  opacity: 1;
+  transform: none;
+  position: relative;
+  grid-area: 2 / 1;
+  z-index: 1;
+  inset: auto;
+  min-height: 44px;
+  padding: 11px 16px;
+  background: #e3d5c1f2;
+  color: var(--ink);
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+}
+.product-card .product-info { align-items: start; gap: 8px; margin-top: 16px; min-height: 0; }
+.product-card .product-info h2 { font-size: clamp(27px, 2.5vw, 38px); font-weight: 600; line-height: 1.1; }
+.product-info h2 a::after { content: ""; position: absolute; inset: 0; }
+.product-card .product-info p { margin-top: 5px; font-size: 12px; line-height: 1.5; }
+.product-card .inquiry-link { position: relative; z-index: 2; display: inline-flex; align-items: center; min-height: 44px; padding: 5px 0 5px 8px; margin: 0; gap: 7px; font-size: 11px; border-bottom: 1px solid var(--line); }
+.stripe-payment-link { position: relative; z-index: 2; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 9px 14px; border: 1px solid #243b31; background: #243b31; color: #eadcc4; font-size: 10px; line-height: 1.35; letter-spacing: .07em; text-align: center; text-transform: uppercase; transition: background .2s, color .2s, border-color .2s; }
+.stripe-payment-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+.stripe-payment-link:active { transform: translateY(1px); background: #4b3a29; }
+.product-detail-copy .stripe-payment-link { width: 100%; min-height: 54px; margin-top: 10px; font-size: 11px; }
+.catalog.section-pad { padding-top: 28px; }
+.catalog .catalog-heading { padding: 0 130px 24px 0; }
+.catalog .catalog-heading h1 { font-size: clamp(64px, 6vw, 96px); line-height: 1; margin: 6px 0 12px; }
+.catalog .catalog-heading p { position: static; font-size: 15px; max-width: none; }
+.catalog .catalog-jewel { position: absolute; right: 0; top: 4px; width: 110px; opacity: .72; }
+.catalog .category-nav { gap: 8px 28px; padding-block: 8px; }
+.catalog .category-nav a { min-height: 44px; font-size: 11px; }
+.catalog .catalog-status { padding-block: 16px; font-size: 12px; }
+.catalog .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 26px; }
+.product-detail.section-pad { padding-top: 16px; }
+.product-detail .back-link { min-height: 44px; margin-bottom: 14px; padding-block: 8px; }
+.product-detail .product-detail-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 80px); align-items: start; }
+.product-detail .product-gallery { width: 100%; max-width: 640px; justify-self: center; }
+.product-detail .gallery-main { aspect-ratio: auto; height: auto; }
+.product-detail .gallery-main > img { height: auto; aspect-ratio: auto; object-fit: contain; object-position: center; }
+.product-detail .gallery-main:hover > img { transform: none; }
+.product-detail .gallery-thumbnails img { object-fit: contain; }
+.product-detail .gallery-thumbnails { gap: 10px; margin-top: 12px; }
+.product-detail .gallery-thumbnails button { width: 58px; }
+.product-detail .product-detail-copy { padding-top: 8px; top: 96px; }
+.product-detail .product-detail-copy h1 { font-size: clamp(44px, 5vw, 76px); line-height: 1; margin: 14px 0 10px; }
+.product-detail .product-type { font-size: 15px; color: var(--ink); }
+.product-detail .product-description { font-size: 15px; margin: 20px 0; max-width: 440px; }
+.product-detail .product-detail-copy .button { justify-content: space-between; min-height: 58px; font-size: 12px; background: #243b31; border-color: #243b31; color: #eadcc4; }
+.product-detail .inquiry-note { margin: 12px 0 22px; font-size: 12px; }
+.product-detail .product-details summary { min-height: 48px; }
+.category-nav a:focus-visible { outline-offset: 2px; }
+@media (hover: hover) {
+  .product-card:hover .product-view, .product-card:focus-within .product-view { background: #243b31; color: #eadcc4; }
+  .product-card .inquiry-link:hover { color: var(--gold); border-color: currentColor; }
+  .product-detail .product-detail-copy .button:hover { background: #365343; }
+}
+@media (max-width: 1100px) {
+  .header .desktop-nav { gap: 16px; }
+  .header .desktop-nav .nav-shop { padding-inline: 12px; }
+  .catalog .product-grid { gap: 32px 20px; }
+  .product-card .product-info { flex-wrap: wrap; }
+  .product-card .inquiry-link { padding-left: 0; }
+}
+@media (max-width: 800px) {
+  .header .mobile-shop { display: inline-flex; align-items: center; position: absolute; left: 18px; min-height: 44px; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; z-index: 2; }
+  .catalog .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .catalog .catalog-heading { padding-bottom: 20px; }
+  .product-detail .product-detail-grid { gap: 25px; }
+  .product-detail .product-detail-copy h1 { font-size: 46px; }
+  .product-detail .product-description { font-size: 14px; margin-block: 16px; }
+  .product-detail .product-detail-copy .button { font-size: 11px; padding-inline: 16px; }
+}
+@media (max-width: 650px) {
+  .catalog.section-pad { padding-top: 22px; }
+  .catalog .catalog-heading { padding-right: 84px; }
+  .catalog .catalog-heading h1 { font-size: 62px; }
+  .catalog .catalog-heading p { font-size: 13px; }
+  .catalog .catalog-jewel { width: 74px; }
+  .catalog .category-nav { flex-wrap: wrap; overflow: visible; gap: 0 16px; padding-block: 6px; }
+  .catalog .category-nav a { font-size: 10px; }
+  .catalog .catalog-status { padding-block: 12px; font-size: 11px; }
+  .catalog .product-grid { gap: 28px 14px; }
+  .catalog .product-card:nth-child(5) { grid-column: auto; }
+  .catalog .product-card:nth-child(5) .product-photo { aspect-ratio: auto; }
+  .product-card .product-info { display: flex; flex-direction: column; margin-top: 12px; gap: 0; }
+  .product-card .product-info h2 { font-size: clamp(21px, 5.8vw, 32px); overflow-wrap: normal; }
+  .product-card .product-info p { font-size: 11px; }
+  .product-card .stripe-payment-link { min-height: 40px; padding: 8px 10px; }
+  .product-card .product-view { min-height: 40px; padding: 9px 10px; font-size: 10px; }
+  .product-card .product-view svg { width: 14px; }
+  .product-detail.section-pad { padding-top: 6px; }
+  .product-detail .back-link { margin-bottom: 8px; }
+  .product-detail .product-detail-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .product-detail .gallery-main { height: auto; }
+  .product-detail .gallery-thumbnails button { width: 44px; }
+  .product-detail .product-detail-copy { position: static; padding-top: 0; }
+  .product-detail .product-detail-copy h1 { margin-top: 8px; font-size: clamp(42px, 12vw, 56px); }
+  .product-detail .product-detail-copy .eyebrow { font-size: 9px; }
+  .product-detail .product-type { font-size: 13px; }
+  .product-detail .product-description { margin: 12px 0 16px; }
+  .product-detail .product-detail-copy .button { min-height: 54px; }
+  .product-detail-copy .stripe-payment-link { min-height: 50px; }
+}
+@media (max-width: 400px) {
+  .header .header-gem { width: 22px; height: 20px; }
+  .header .header-gem-left { left: calc(50% - 86px); }
+  .header .header-gem-right { right: calc(50% - 86px); }
+}
+@media (hover: hover) {
+  .stripe-payment-link:hover { background: #365343; border-color: #365343; color: #fff8ed; }
+}

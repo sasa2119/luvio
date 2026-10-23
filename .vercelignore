@@ -1,0 +1,7 @@
+.env*
+.codex-remote-attachments/
+node_modules/
+qa/
+tests/
+public/
+.git/

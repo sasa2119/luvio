@@ -1,0 +1,10 @@
+node_modules/
+qa/
+*.log
+.codex-remote-attachments/
+.env
+.env.*
+!.env.example
+
+.vercel
+public/

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "node build.mjs --deploy && node scripts/sync-stripe-prices.mjs",
+  "outputDirectory": "public",
+  "installCommand": "npm ci",
+  "functions": {
+    "api/create-checkout-session.js": { "maxDuration": 60 }
+  }
+}
