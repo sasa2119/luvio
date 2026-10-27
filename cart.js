@@ -117,7 +117,6 @@ function openBag() {
   document.querySelector('#mobile-menu')?.close();
   render();
   drawer.showModal();
-  document.documentElement.classList.add('cart-open');
   drawer.querySelector('[data-cart-close]').focus();
 }
 document.querySelectorAll('[data-cart-open]').forEach((button) => button.addEventListener('click', openBag));
@@ -128,7 +127,6 @@ drawer?.addEventListener('click', (event) => {
   if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) drawer.close();
 });
 drawer?.addEventListener('close', () => {
-  document.documentElement.classList.remove('cart-open');
   returnFocus?.focus({ preventScroll: true });
 });
 

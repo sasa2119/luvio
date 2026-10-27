@@ -20,7 +20,7 @@ export function home() {
   html = html.replace(headphonesCard, '');
   html = html.replace(productCard(getProduct('horse')), `${productCard(getProduct('horse'))}${emeraldCard}${headphonesCard}`);
   html = html.replace('<span class="eyebrow">Our products</span>', '<span class="eyebrow">Ready to Order</span>');
-  html = html.replace('<span>View all products</span>', '<span>Explore Ready to Order</span>');
+  html = html.replace('<span>View all products</span>', '<span>Explore all designs</span>');
   html = html.replace(/(class="section-heading"[\s\S]*?href=")\/shop\/("[\s\S]*?Explore Ready to Order)/, '$1/shop/?collection=ready-to-order$2');
   html = html.replace('</h2></div>\n        <div>', '</h2></div>\n        <div>');
   html = html.replace('Choose Cherry on black or Hummingbird on white. Each design is made with crystals placed by hand. Ask us about sizes and availability.', `Choose Cherry on black or Hummingbird on white. Each design is made with crystals placed by hand. ${money(getProduct('cherry').price)} each. Made after you order; sizing is confirmed with your inquiry.`);

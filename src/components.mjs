@@ -38,8 +38,8 @@ export function header(path) {
 }
 export const footer = () => template('footer').replace('<h3>Shop</h3>', '<h3>Shop</h3><a href="/shop/?collection=ready-to-order">Ready to Order</a>');
 export const cartDrawer = () => `<dialog id="shopping-bag" class="cart-drawer" aria-labelledby="bag-title">
-  <div class="bag-heading"><div><span class="eyebrow">LUVIO</span><h2 id="bag-title">Your bag</h2></div><button class="bag-close" type="button" data-cart-close aria-label="Close shopping bag">×</button></div>
-  <div class="bag-empty" data-cart-empty><p>Choose a design to make your own.</p>${button('Explore Ready to Order', '/shop/?collection=ready-to-order')}</div>
+  <div class="bag-heading"><div><span class="eyebrow">LUVIO</span><h2 id="bag-title">Your bag</h2></div><button class="bag-close" type="button" data-cart-close aria-label="Close shopping bag"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button></div>
+  <div class="bag-empty" data-cart-empty>${button('Explore all designs', '/shop/?collection=ready-to-order')}</div>
   <ul class="bag-items" data-cart-items aria-label="Products in your bag"></ul>
   <div class="bag-summary" data-cart-summary hidden><div class="bag-subtotal"><span>Subtotal</span><strong data-cart-subtotal></strong></div><p>Every piece is made by hand after you order. Shipping is shown at checkout. Include your size or watch details with your selection.</p><a class="button bag-inquiry" href="/checkout/" data-checkout-open><span>Checkout</span>${arrow}</a><a class="text-link" href="/contact/?order=cart#order-inquiry" data-order-inquiry>Ask about your order ${arrow}</a><a class="text-link" href="/shop/?collection=ready-to-order">Continue browsing ${arrow}</a></div>
   <p class="bag-error" data-cart-error role="alert" hidden></p>

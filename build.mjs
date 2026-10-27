@@ -29,7 +29,7 @@ if (process.argv.includes('--deploy')) {
       await fs.copyFile(path.join(root, entry.name), path.join(output, entry.name));
     }
   }
-  for (const dir of ['images', 'fonts']) await fs.cp(path.join(root, dir), path.join(output, dir), { recursive: true });
+  for (const dir of ['images', 'fonts', 'videos']) await fs.cp(path.join(root, dir), path.join(output, dir), { recursive: true });
   await fs.copyFile(path.join(root, '404.html'), path.join(output, '404.html'));
   console.log('Prepared public/ with static browser assets only.');
 }
